@@ -19,11 +19,14 @@ export default createGlobalStyle`
         width: 100vw;
         height: 100vh;
 
+        overflow: hidden;
+
         -webkit-font-smoothing: antialiased;
+
         > #root {
-            width: 100vw;
-            height: 100vh;
+            overflow: scroll;
         }
+        
     }
 
     body, input, textarea, select {
@@ -51,6 +54,6 @@ export default createGlobalStyle`
     }
 
     button:hover, a:hover {
-        filter: brightness(0.9);
+        filter: brightness(0.8);
     }
 `;
