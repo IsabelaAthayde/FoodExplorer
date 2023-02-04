@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import { Footer } from '../../Components/Footer';
 import { HeaderMobile } from "../../Components/Header/Mobile";
-import { Menu } from "../../Components/Menu";
+import { Meals } from "../../Components/Meals";
 import { HeaderDesktop } from "../../Components/Header/Desktop";
 
 import pngegg from "../../assets/pngegg.svg";
@@ -20,9 +20,9 @@ export function Home() {
                     </div>
                 </div>
             </section>
-            <Menu title="Refeições" />
-            <Menu title="Pratos principais" />
-            <Menu title="Bebidas" />
+            <Meals title="Refeições" />
+            <Meals title="Pratos principais" />
+            <Meals title="Bebidas" />
 
             <Footer/>
         </Container>

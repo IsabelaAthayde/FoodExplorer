@@ -9,7 +9,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
 
-export function Menu({title}) {
+export function Meals({title}) {
     return (
         <Container className="slider">
             <strong>{title}</strong>

@@ -8,7 +8,9 @@ import Receipt from "../../../assets/icons/Receipt.svg";
 export function HeaderMobile({ iconInit, iconEnd, ...rest}) {
     return (
         <Container {...rest}>
-            <img src={Menu} alt="" />
+            <button>
+                <img src={Menu} alt="" />
+            </button>
             <Logo />
             <button>
                 <img src={Receipt} alt="" />

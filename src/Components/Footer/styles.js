@@ -13,16 +13,35 @@ export const Container = styled.div`
     border: none;
 
     padding: 0 2.7rem;
+    @media (max-width: 427px) {
+        padding: 0 .8rem;
 
+        > h1 {
+            margin-right: 1rem;
+            > img {
+                width: 17px;
+                height: 17px;
+            }
+    
+            > span {
+                font-size: 1.2rem;
+            }
+        }
+    }
     
     > h1 {
+        
+
         > img {
            width: 22px;
+           filter: grayscale(100%) brightness(140%);
+
         }
 
         > span {
            font-size: 1.5rem; 
            white-space: nowrap;
+            filter: brightness(40%);
 
         }
         

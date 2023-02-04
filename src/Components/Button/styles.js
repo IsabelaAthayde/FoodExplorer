@@ -7,4 +7,11 @@ export const Container = styled.button`
     background-color: ${({theme}) => theme.COLORS.TOMATO_100};
     border: none;
     border-radius: 8px;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .9rem;
+
 `;
