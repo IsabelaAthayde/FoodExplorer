@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import pngegg from "../../assets/pngegg.svg";
-
 export const Container = styled.div`
     width: inherit;
-    height: 100vh;
+    height: inherit;
+    overflow: scroll;
+
 
     > section#slogan {
         min-height: 14.9rem;
@@ -30,16 +30,10 @@ export const Container = styled.div`
                 position: absolute;
                 left: -40px;
                 bottom: 0; 
-                /* clip-path: inset(0 0 14px 0); */
 
                 width: 50%;
-                max-width: 656px;
-
-                height: 100%;
-                min-height: 149px;
-                max-height: 412px;
-
-                /* object-fit: contain; */
+                
+                max-height: 170px;
             }
 
             div#text_container {
@@ -48,6 +42,7 @@ export const Container = styled.div`
                 max-width: 422px;
                 margin-right: 2.1rem;
                 text-align: center;
+                z-index: 2;
 
                 h3, p {
                     font-family: 'Poppins', sans-serif;

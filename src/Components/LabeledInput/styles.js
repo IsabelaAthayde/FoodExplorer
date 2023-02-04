@@ -17,6 +17,7 @@ export const Container = styled.div`
     > label {
         color: ${({theme}) => theme.COLORS.LIGHT_400};
         margin-bottom: .8rem;
+        cursor: pointer;
     }
 
 
@@ -25,7 +26,7 @@ export const Container = styled.div`
         height: 4.8rem;
 
         padding: 1.4rem;
-        background-color: ${({theme}) => theme.COLORS.DARK_900};
+        background-color: ${({theme}) => theme.COLORS.DARK_800};
         color: ${({theme}) => theme.COLORS.LIGHT_500};
         border: none;
         border-radius: 8px;
