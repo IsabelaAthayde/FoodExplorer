@@ -5,11 +5,12 @@ import { Meals } from "../../Components/Meals";
 import { HeaderDesktop } from "../../Components/Header/Desktop";
 
 import sloganSmall from "../../assets/sloganSmall.svg";
+import Slide from '../../Components/Slide';
 
-export function Home() {
+export function Home({isAdmin}) {
     return (
-        <Container>
-            <HeaderMobile />
+        <Container isAdmin={isAdmin}>
+            <HeaderMobile isAdmin={isAdmin} />
             <section id="slogan">
                 <div id="color_bg">
                     <img src={sloganSmall} />
@@ -19,9 +20,19 @@ export function Home() {
                     </div>
                 </div>
             </section>
-            <Meals title="Refeições" />
-            <Meals title="Pratos principais" />
-            <Meals title="Bebidas" />
+            {/* <Meals isAdmin={isAdmin}  title="Refeições" /> */}
+            <Meals isAdmin={isAdmin}  title="Refeições" >
+                <Slide />
+            </Meals>
+
+            <Meals isAdmin={isAdmin}  title="Refeições" >
+                <Slide />
+            </Meals>
+
+            <Meals isAdmin={isAdmin}  title="Refeições" >
+                <Slide />
+            </Meals>
+            
 
             <Footer/>
         </Container>

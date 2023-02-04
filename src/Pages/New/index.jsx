@@ -12,10 +12,10 @@ import { HiArrowUpTray } from 'react-icons/hi2';
 
 
 
-export function NewOrEdit() {
+export function New({isAdmin}) {
     return (
         <Container>
-            <HeaderMobile />
+            <HeaderMobile isAdmin />
 
             <main>
                 <form>
@@ -44,6 +44,7 @@ export function NewOrEdit() {
 
                     <label htmlFor="Ingredient" id="Ingredient">Ingredientes
                         <div id="tagitem-container">
+                            <TagItem value="Pão naan" />
                             <TagItem isNew placeholder="Adicionar" />
                         </div>
                     </label>

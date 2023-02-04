@@ -30,7 +30,10 @@ export default createGlobalStyle`
         font-size: 1.6rem;
         outline: none;
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
 
+    input:hover, textarea:hover, select:hover {
+            color: ${({theme}) => theme.COLORS.LIGHT_400};
     }
     
     button {

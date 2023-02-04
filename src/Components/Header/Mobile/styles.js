@@ -30,6 +30,10 @@ export const Container = styled.div`
         }
         
     }
+    > span {
+        font-size: 1.4rem;
+        color: ${({theme}) => theme.COLORS.CAKE_100};
+    }
 
     > button {
         background: transparent;

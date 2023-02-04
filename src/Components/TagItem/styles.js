@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: fit-content;
+    height: 3.2rem;
     width: fit-content;
 
     display: flex;
@@ -16,19 +16,19 @@ export const Container = styled.div`
     border-radius: 10px;
     outline: none;
 
-        animation: addTag 0.8s ease-out 0s 1 normal forwards;
-        transition: all 0.8s;
-        @keyframes addTag {
-        0% {
-            opacity: 0;
-            transform: translateX(100px);
-        }
-    
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        }
+    animation: addTag 0.8s ease-out 0s 1 normal forwards;
+    transition: all 0.8s;
+    @keyframes addTag {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
 
 
     > button {
@@ -38,6 +38,8 @@ export const Container = styled.div`
         height: 22px;
         svg {
             height: 20px;
+            color: ${({theme, isNew}) => isNew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100}
+
         }
     }
 

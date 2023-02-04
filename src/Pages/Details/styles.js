@@ -118,7 +118,6 @@ export const Container = styled.div`
     
                 button {
                     max-width: 188px;
-                    width: fit-content;
                     height: fit-content;
                     background-color: ${({theme}) => theme.COLORS.TOMATO_100};
                     border-radius: 5px;

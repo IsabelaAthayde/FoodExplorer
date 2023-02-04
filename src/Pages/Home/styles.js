@@ -18,6 +18,7 @@ export const Container = styled.div`
         div#color_bg {
             height: 12rem;
             width: 90%;
+            margin: 0 auto;
             background: ${({theme}) => theme.COLORS.GRADIENT_200};
 
             display: flex;

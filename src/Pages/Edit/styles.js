@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: inherit;
     height: inherit;
-    overflow: scroll;
+    overflow-y: scroll;
 
     main {
         width: 100%;
@@ -122,11 +122,15 @@ export const Container = styled.div`
                     color: ${({theme}) => theme.COLORS.LIGHT_500};
                     border: none;
                     border-radius: 8px;
+                    
+                    &:hover {
+                        color: ${({theme}) => theme.COLORS.LIGHT_400};
+                    }
                     }
                 }
             }
 
-            > section:last-of-type {
+            > section:nth-of-type(2) {
                 display: flex;
                 flex-direction: column;
                 gap: 2.4rem;
@@ -145,6 +149,10 @@ export const Container = styled.div`
 
                         display: flex;
                         align-items: center;
+                        gap: 1.6rem;
+
+                        overflow-x: auto;
+                        overflow-y: hidden;
                     }
                 }
 
@@ -162,16 +170,38 @@ export const Container = styled.div`
                         border-radius: 8px;
 
                         resize: none;
+
+
+                        &:hover {
+                            color: ${({theme}) => theme.COLORS.LIGHT_400};
+                        }
                     }
                 }
             }
 
-            > button:last-of-type {
-                background-color: ${({theme}) => theme.COLORS.TOMATO_400};
-                
-                &:hover {
-                    background-color: ${({theme}) => theme.COLORS.TOMATO_300};
-                    filter: none;
+            > section:last-of-type {
+                display: flex;
+                gap: 3.2rem;
+
+                button.handleEdit {
+                    width: 50%;
+                    font-size: 1.4rem;
+                }
+
+                button:first-of-type {
+                    background-color: ${({theme}) => theme.COLORS.DARK_800};
+                    &:hover {
+                        background-color: ${({theme}) => theme.COLORS.DARK_1000};
+                        filter: none;
+                    }
+                }
+
+                button:last-of-type {
+                    background-color: ${({theme}) => theme.COLORS.TOMATO_400};
+                    &:hover {
+                        background-color: ${({theme}) => theme.COLORS.TOMATO_300};
+                        filter: none;
+                    }
                 }
             }
             

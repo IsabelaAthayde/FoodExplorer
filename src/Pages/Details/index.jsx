@@ -10,10 +10,10 @@ import Receipt from "../../assets/icons/Receipt.svg";
 
 
 
-export function Details() {
+export function Details({isAdmin}) {
     return (
-        <Container>
-            <HeaderMobile />
+        <Container isAdmin={isAdmin}>
+            <HeaderMobile isAdmin={isAdmin} />
 
             <main>
                 <Button id="back" icon={<MdKeyboardArrowLeft />} text="Voltar" />
@@ -32,13 +32,24 @@ export function Details() {
                 </div>
 
                 <section>
-                    <div className="quantity">
-                        <a><AiOutlineMinus /></a>
-                        <span>01</span>
-                        <a><AiOutlinePlus /></a>
-                    </div>
+                    {isAdmin ? (
+                        <div style={{display: "none"}}></div>
+                    ) : (
+                        <div className="quantity">
+                            <a><AiOutlineMinus /></a>
+                            <span>01</span>
+                            <a><AiOutlinePlus /></a>
+                        </div>
+                        
+                    )}
 
-                    <Button text="Pedir . R$ 25,00" icon={<img src={Receipt}/>} />
+                    {isAdmin ? 
+                    (
+                        <Button text="Editar prato" />
+                    ) : (
+                        <Button text="Pedir . R$ 25,00" icon={<img src={Receipt}/>} />
+                    )}
+
                 </section>
             </main>
 

@@ -24,6 +24,40 @@ export const Container = styled.div`
             height: 1.8rem;
         }
     }
+
+    > div  {
+        width: 90%;
+        height: 4.8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        padding: 1.4rem;
+        margin: 3.6rem auto;
+
+        background-color: ${({theme}) => theme.COLORS.DARK_800};
+        color: ${({theme}) => theme.COLORS.LIGHT_500};
+        border: none;
+        border-radius: 8px;
+    }
+
+    > section {
+        display: grid;
+        width: 90%;
+        height: fit-content;
+        margin: 0 auto;
+
+        a {
+            text-decoration: none;
+            color: ${({theme}) => theme.COLORS.LIGHT_300};
+            font-size: 2rem;
+            padding: 1rem 0;
+            border-bottom: ${({theme }) => `1px ${theme.COLORS.DARK_1000} solid`};
+            font-family: 'Poppins', sans-serif;
+        }
+    }
+
     > footer {
         position: absolute;
         bottom: 0;

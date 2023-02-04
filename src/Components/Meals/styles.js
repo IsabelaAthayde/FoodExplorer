@@ -1,17 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-    width: fit-content;
-    height: fit-content;
+    width: 80%;
+    height: 40rem;
 
     margin-left: 24px;
+
+    @media (min-width: 650px) {
+        width: 80%;
+        margin: 0 auto
+    }
 
     > strong {
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
     }
     
-    > div.cards-container {
+    /* > div.cards-container {
         width: fit-content;
         height: fit-content;
 
@@ -76,7 +81,7 @@ export const Container = styled.section`
                 }
             }
 
-            button:last-of-type {
+            button.add {
                 width: 100%;
                 background-color: ${({theme}) => theme.COLORS.TOMATO_100};
                 line-height: 2;
@@ -84,5 +89,5 @@ export const Container = styled.section`
                 font-weight: 400;
             }
         }
-    }
+    } */
 `;
