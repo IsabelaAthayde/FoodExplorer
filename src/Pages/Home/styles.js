@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import sloganSmall from "../../assets/sloganSmall.svg";
+import sloganBig from "../../assets/sloganBig.svg";
+
 export const Container = styled.div`
     width: inherit;
     height: inherit;
@@ -14,6 +17,15 @@ export const Container = styled.div`
         display: flex;
         justify-content: end;
         align-items: end;
+        position: relative;
+
+        @media (min-width: 565px) {
+            height: 19.7rem;
+        }
+
+        @media (min-width: 805px) {
+            height: 26.2rem;
+        }
 
         div#color_bg {
             height: 12rem;
@@ -25,16 +37,36 @@ export const Container = styled.div`
             justify-content: end;
             align-items: center;
 
-            position: relative;
+            @media (min-width: 565px) {
+                height: 70%;
+            }
 
-            img {
-                position: absolute;
-                left: -40px;
-                bottom: 0; 
-
-                width: 50%;
+            aside {
+                background-image: url(${sloganSmall});
                 
-                max-height: 170px;
+                background-repeat: no-repeat;
+                background-size: contain;
+                position: absolute;
+                left: 0;
+                bottom: 0; 
+                
+                width: 50%;
+                max-width: 656px;
+                height: 100%;
+                
+                @media (max-width: 443px) {
+                    width: 60%;
+                    background-size: cover;
+                    left: -30px;
+
+                }
+
+                @media (min-width: 565px) {
+                    background-image: url(${sloganBig});
+                    width: 656px;
+                    max-width: 656px;
+                }
+
             }
 
             div#text_container {
@@ -45,6 +77,15 @@ export const Container = styled.div`
                 text-align: center;
                 z-index: 2;
 
+                @media (min-width: 565px) {
+                    width: 70%;
+                }
+                @media (min-width: 805px) {
+                    width: 100%;
+                    margin-right: 5rem;
+                }
+
+
                 h3, p {
                     font-family: 'Poppins', sans-serif;
                     letter-spacing: 1;
@@ -54,15 +95,27 @@ export const Container = styled.div`
                     font-weight: 500;
                     font-size: 1.8rem;
                     
-                    line-height: 25px;
+                    line-height: normal;
+                    @media (min-width: 565px) {
+                        font-size: 2.6rem;
+                    }
 
+                    @media (min-width: 993px) {
+                        font-size: 4rem;
+                    }
                 }
-
+                
                 p {
                     font-weight: 300;
-
+                    
                     font-size: 1.2rem;
-                    line-height: 17px;
+                    line-height: normal;
+                    @media (min-width: 565px) {
+                        font-size: 1.6rem;
+                        font-weight: 400;
+                        color: ${({theme}) => theme.COLORS.LIGHT_300};
+                        margin-top: 0.8rem;
+                    }
                 }
             }
         }

@@ -14,7 +14,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 export function Meals({title, isAdmin, children}) {
     return (
         <Container className="slider" isAdmin={isAdmin}>
-            <strong>{title}</strong>
+            <span>{title}</span>
             {children}
         </Container>
     )

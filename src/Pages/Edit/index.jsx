@@ -6,7 +6,7 @@ import { LabeledInput } from '../../Components/LabeledInput';
 
 import { Icon } from '../../Components/Icon';
 
-import { HeaderMobile } from "../../Components/Header/Mobile";
+import { Header } from "../../Components/Header";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { HiArrowUpTray } from 'react-icons/hi2';
 
@@ -15,7 +15,7 @@ import { HiArrowUpTray } from 'react-icons/hi2';
 export function Edit() {
     return (
         <Container>
-            <HeaderMobile isAdmin />
+            <Header isAdmin />
 
             <main>
                 <form>

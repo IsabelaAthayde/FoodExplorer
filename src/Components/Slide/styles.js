@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    height: 30rem;
+    height: 34rem;
 
     .slick-slider {
         position: relative;

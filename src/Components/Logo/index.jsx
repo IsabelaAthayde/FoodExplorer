@@ -2,11 +2,11 @@ import logoSvg from '../../assets/Logo.svg';
 
 import { Container } from './styles';
 
-export function Logo() {
+export function Logo({isAdmin}) {
     return (
-        <Container>
+        <Container isAdmin={isAdmin}>
             <img src={logoSvg} alt="poligono azul"/>
-            <span id="logoName">food explorer</span>
+            {isAdmin ? (<span id="logoName">food explorer <span id="admin">admin</span> </span>) : <span id="logoName">food explorer</span> }
         </Container>
     )
 }

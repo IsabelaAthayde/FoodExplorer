@@ -10,13 +10,16 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 
 
-export function Card({ isAdmin}) {
+export function Card(props) {
+    const { isAdmin } = props;
+
     return (
-        <Container className="card">
+        <Container className="card" isAdmin={isAdmin}>
             <Icon className="favIcon" src={isAdmin ? Pencil : Heart} />
             <img className="food" src={MaskGroup1} alt="" />
             <span className='dish'>Salada Ravanello <MdKeyboardArrowRight/> </span>
-            <p>R$ 49,97</p>
+            <p className='ingredients'>Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.</p>
+            <p className='price'>R$ 49,97</p>
 
             { isAdmin ? <div style={{display: "none"}}></div> :(
                 <div className="quantity">

@@ -29,6 +29,10 @@ function SamplePrevArrow(props) {
 
 
 class Carousel extends Component {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
       const settings = {
         dots: false,
@@ -61,26 +65,29 @@ class Carousel extends Component {
               infinite: true,
               speed: 500,
               slidesToShow: 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              initialSlide: 0,
             }
           },
           {
             breakpoint: 490,
+            settings: {
+              arrows: false,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 0.6,
+              slidesToScroll: 1,
+              initialSlide: 0,
+            }
+          },
+          {
+            breakpoint: 400,
             settings: {
               arrows: false,
               infinite: true,
               speed: 500,
               slidesToShow: 0.5,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 490,
-            settings: {
-              arrows: false,
-              infinite: true,
-              speed: 500,
-              slidesToShow: 1,
+              initialSlide: 0,
             }
           }
         ]
@@ -89,10 +96,10 @@ class Carousel extends Component {
       return (
       <Container>
         <Slider {...settings}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card isAdmin={this.props.isAdmin}/>
+        <Card isAdmin={this.props.isAdmin}/>
+        <Card isAdmin={this.props.isAdmin}/>
+        <Card isAdmin={this.props.isAdmin}/>
 
         </Slider> 
         </Container>

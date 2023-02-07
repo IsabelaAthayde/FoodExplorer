@@ -11,14 +11,14 @@ export function SignIn() {
 
             <section id="login">
                 <h2>Faça Login</h2>
-                <LabeledInput label="Email" type="text" placeholder="Exemplo: exemplo@exemplo.com.br" />
+                <LabeledInput name="input" label="Email" type="text" placeholder="Exemplo: exemplo@exemplo.com.br" />
                 
-                <LabeledInput label="Senha" type="text" placeholder="No mínimo 6 caracteres" />
+                <LabeledInput name="input" label="Senha" type="text" placeholder="No mínimo 6 caracteres" />
 
                 <Button text="Entrar"/>
                 <button id="nav">Criar Conta</button>
             </section>
             
         </Container>
-    )
+    )                        
 }

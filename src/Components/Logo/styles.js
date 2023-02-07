@@ -14,7 +14,13 @@ export const Container = styled.h1`
         height: 43px;
     }
 
-    > span {
-        font-size: 3.7rem;
+    > span#logoName {
+        font-size: 1.6rem;
+        
+        > span#admin {
+            font-size: 1.2rem;
+            color: ${({theme}) => theme.COLORS.CAKE_100};
+            font-weight: 400;
+        }
     }
 `;

@@ -11,9 +11,9 @@ export function HeaderMobile({ isAdmin, ...rest}) {
             <button>
                 <img src={Menu} alt="" />
             </button>
-            <Logo />
+            <Logo isAdmin={isAdmin}/>
             {
-                isAdmin ? <span>admin</span> : (
+                isAdmin ? <div></div> : (
                     <button>
                         <img src={Receipt} alt="" />
                         <div id="order">0</div>

@@ -4,16 +4,17 @@ export const Container = styled.section`
     width: 80%;
     height: 40rem;
 
-    margin-left: 24px;
+    margin: 2rem auto;
 
     @media (min-width: 650px) {
         width: 80%;
-        margin: 0 auto
     }
 
-    > strong {
+    > span:first-of-type {
         font-family: 'Poppins', sans-serif;
         font-weight: 500;
+        margin: 2.4rem 0;
+        display: block;
     }
     
     /* > div.cards-container {

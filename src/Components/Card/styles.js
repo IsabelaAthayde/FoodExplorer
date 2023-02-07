@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
     min-width: 210px;
     min-height: 292px;
-    height: 30rem;
+    height: fit-content;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     
     padding: 2.4rem;
 
@@ -36,8 +36,19 @@ export const Container = styled.div`
 
         font-family: 'Poppins', sans-serif;
     }
+    
+    p.ingredients {
+        color: ${({theme}) => theme.COLORS.LIGHT_500};
+        font-weight: 400;
+        font-size: 1.4rem;
+        text-align: center;
 
-    p {
+        @media (max-width: 200px) {
+            display: none;
+        }
+    }
+
+    p.price {
         color: ${({theme}) => theme.COLORS.CAKE_100};
     }
 
