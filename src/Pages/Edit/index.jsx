@@ -28,7 +28,7 @@ export function Edit() {
                             <LabeledInput name="file" type="file" label="Imagem do prato" icon={<HiArrowUpTray />} placeholder="Selecione a Imagem para alterá-la" />
                         </label>
 
-                        <LabeledInput type="text" label="Nome" placeholder="Salada Ceasar"/>
+                        <LabeledInput name="name" type="text" label="Nome" placeholder="Salada Ceasar"/>
             
                         <label htmlFor="Category" id="Category">Categoria
                             <select name="Category" placeholder="Refeição">
@@ -49,14 +49,15 @@ export function Edit() {
                         </div>
                     </label>
 
-                    <LabeledInput label="Preço" placeholder="R$ 00,00" value="R$"/>
+                    <LabeledInput name="price" label="Preço" placeholder="R$ 00,00" />
+
+
+                    </section>
 
                     <label htmlFor="Description" id="Description">Descrição
                         <textarea placeholder="A Salada César é uma opção refrescante para o verão.">
                         </textarea>
                     </label>
-
-                    </section>
 
                     <section>
                         <Button className="handleEdit" type="button" text="Excluir prato"/>

@@ -22,7 +22,7 @@ export const Container = styled.div`
             flex-direction: column;
             gap: 2rem;
             
-            padding: 0 0 5.3rem;
+            padding: 5.3rem 0;
             border-radius: 8px;
             
             button#back {
@@ -55,8 +55,13 @@ export const Container = styled.div`
                 flex-direction: column;
                 gap: 2.4rem;
 
+                @media (min-width: 768px) {
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                }
+
                 > label {
-                    width: 100%;
                     height: fit-content;
 
                     background-color: transparent;
@@ -82,6 +87,11 @@ export const Container = styled.div`
                         color: ${({theme}) => theme.COLORS.LIGHT_500};
                         border: none;
                         border-radius: 8px;
+
+                        @media (min-width: 768px) {
+                            width: 22.9rem;
+                        }
+
                         label {
                             margin: 0;
                         }
@@ -99,6 +109,16 @@ export const Container = styled.div`
                     }
                 }
 
+                > div.name {
+                    label {
+                        
+                        margin: 0;
+                    }
+                    input {
+                        margin-top: 1.6rem;
+                    }
+                }
+
                 > #Category {
                     width: 100%;
                     height: fit-content;
@@ -111,6 +131,10 @@ export const Container = styled.div`
                     font-weight: 400;
                     color: ${({theme}) => theme.COLORS.LIGHT_400};
 
+                    @media (min-width: 768px) {
+                        width: 30rem;
+                        flex: 1 50rem;
+                    }
 
                     > select {
                     width: 100%;
@@ -134,8 +158,20 @@ export const Container = styled.div`
                 display: flex;
                 flex-direction: column;
                 gap: 2.4rem;
+                width: 100%;
+
+                @media (min-width: 768px) {
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                }
 
                 > label#Ingredient {
+                    @media (min-width: 768px) {
+                        flex: 2;
+                    }
+
                     div#tagitem-container {
                         width: 100%;
                         height: 4.8rem;
@@ -154,27 +190,40 @@ export const Container = styled.div`
                         overflow-x: auto;
                         overflow-y: hidden;
                     }
+
+                }
+                > div.price {
+                    @media (min-width: 768px) {
+                       width: 30rem;
+                        label {
+                            margin: 0;
+                        }
+                        input {
+                            margin-top: 1.6rem;
+                        }
+                    }
                 }
 
-                > label#Description {
+            }
+
+            > label#Description {
+                width: 100%;
+                
+                > textarea {
+                    padding: 1.4rem;
+                    margin-top: 1.6rem;
                     width: 100%;
-                    
-                    > textarea {
-                        padding: 1.4rem;
-                        margin-top: 1.6rem;
-                        width: 100%;
-                        height: 172px;
-                        background-color: ${({theme}) => theme.COLORS.DARK_800};
-                        color: ${({theme}) => theme.COLORS.LIGHT_500};
-                        border: none;
-                        border-radius: 8px;
+                    height: 172px;
+                    background-color: ${({theme}) => theme.COLORS.DARK_800};
+                    color: ${({theme}) => theme.COLORS.LIGHT_500};
+                    border: none;
+                    border-radius: 8px;
 
-                        resize: none;
+                    resize: none;
 
 
-                        &:hover {
-                            color: ${({theme}) => theme.COLORS.LIGHT_400};
-                        }
+                    &:hover {
+                        color: ${({theme}) => theme.COLORS.LIGHT_400};
                     }
                 }
             }
@@ -182,10 +231,18 @@ export const Container = styled.div`
             > section:last-of-type {
                 display: flex;
                 gap: 3.2rem;
-
+                
+                @media (min-width: 768px) {
+                    justify-content: flex-end;
+                }
+                
                 button.handleEdit {
                     width: 50%;
                     font-size: 1.4rem;
+
+                    @media (min-width: 768px) {
+                        width: 18rem;
+                    }
                 }
 
                 button:first-of-type {

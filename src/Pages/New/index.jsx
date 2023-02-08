@@ -10,8 +10,6 @@ import { Header } from "../../Components/Header";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { HiArrowUpTray } from 'react-icons/hi2';
 
-
-
 export function New({isAdmin}) {
     return (
         <Container>
@@ -22,13 +20,13 @@ export function New({isAdmin}) {
                     <Button type="button" id="back" icon={<MdKeyboardArrowLeft />} text="Voltar" />
                     <h2>Novo prato</h2>
 
-                    <section>
+                    <section id="row1">
 
                         <label>Imagem do prato
-                            <LabeledInput name="file" type="file" label="Imagem do prato" icon={<HiArrowUpTray />} placeholder="Selecione a Imagem" />
+                            <LabeledInput name="file" type="file" label="Selecione a Imagem" icon={<HiArrowUpTray />} placeholder="Selecione a Imagem" />
                         </label>
 
-                        <LabeledInput type="text" label="Nome" placeholder="Ex.: Salada Ceasar"/>
+                        <LabeledInput name="name" type="text" label="Nome" placeholder="Ex.: Salada Ceasar"/>
             
                         <label htmlFor="Category" id="Category">Categoria
                             <select name="Category" placeholder="Refeição">
@@ -40,7 +38,7 @@ export function New({isAdmin}) {
 
                     </section>
 
-                    <section>
+                    <section id="row2">
 
                     <label htmlFor="Ingredient" id="Ingredient">Ingredientes
                         <div id="tagitem-container">
@@ -49,15 +47,16 @@ export function New({isAdmin}) {
                         </div>
                     </label>
 
-                    <LabeledInput label="Preço" placeholder="R$ 00,00" value="R$"/>
+                    <LabeledInput name="price" label="Preço" placeholder="R$ 00,00" />
 
+
+                    </section>
+                    
                     <label htmlFor="Description" id="Description">Descrição
                         <textarea placeholder="Fale brevemente sobre o prato, seus ingredientes e composição">
                         </textarea>
                     </label>
-
-                    </section>
-                    <Button type="button" text="Salvar alterações"/>
+                    <Button id="btn" type="button" text="Salvar alterações"/>
                 </form>
             </main>
 
