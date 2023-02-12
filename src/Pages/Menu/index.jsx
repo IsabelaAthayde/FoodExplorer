@@ -26,7 +26,10 @@ export function Menu({isAdmin}) {
             </section>) 
             : 
             (
-                <section></section>
+                <section>
+                <a href="">Meus Favoritos</a>
+                <a href="">Sair</a>
+            </section>
             )} 
             <Footer/>
         </Container>
