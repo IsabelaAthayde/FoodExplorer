@@ -10,14 +10,14 @@ import { Payment } from '../Pages/Payment';
 
 export function AppRoutes() {
     return (
-        <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/menu" element={<Menu/>}/>
-            <Route path="/details/:id" element={<Details/>}/>
-            <Route path="/new" element={<New/>}/>
-            <Route path="/edit/:id" element={<Edit/>}/>
-            <Route path="/favorites" element={<Favorites/>}/>
-            <Route path="/payment" element={<Payment/>}/>
+        <Routes >
+            <Route path="/" element={<Home isAdmin/>}/>
+            <Route path="/menu" element={<Menu isAdmin/>}/>
+            <Route path="/details/:id" element={<Details isAdmin/>}/>
+            <Route path="/new" element={<New isAdmin/>}/>
+            <Route path="/edit/:id" element={<Edit isAdmin/>}/>
+            <Route path="/favorites" element={<Favorites isAdmin/>}/>
+            <Route path="/payment" element={<Payment isAdmin/>}/>
         </Routes>
     )
 }

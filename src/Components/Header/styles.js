@@ -150,7 +150,7 @@ export const Container = styled.div`
         }
     }
 
-    > img#signOut {
+    > button#signOut {
         @media (max-width: 768px) {
             display: none;
         }

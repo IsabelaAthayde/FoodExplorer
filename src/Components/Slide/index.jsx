@@ -7,7 +7,10 @@ import { Container } from "./styles.js";
 import { Card } from '../Card';
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-
+import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -27,10 +30,14 @@ function SamplePrevArrow(props) {
   );
 }
 
+function getCategory(props) {
+  console.log(category);
+}
 
 class Carousel extends Component {
     constructor(props) {
       super(props);
+
     }
 
     render() {
@@ -92,15 +99,18 @@ class Carousel extends Component {
           }
         ]
       };
-  
+       const { category } = this.props;
+    
       return (
       <Container>
-        <Slider {...settings}>
-        <Card isAdmin={this.props.isAdmin}/>
-        <Card isAdmin={this.props.isAdmin}/>
-        <Card isAdmin={this.props.isAdmin}/>
-        <Card isAdmin={this.props.isAdmin}/>
-
+        <Slider {...settings}>     
+          {category.map(meal => (
+            <Card 
+            key={String(meal.id)}
+            isAdmin={this.props.isAdmin}
+            data={meal}
+            />
+          ))}
         </Slider> 
         </Container>
       );

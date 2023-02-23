@@ -19,6 +19,7 @@ export function SignUp() {
 
         if(!name || !email || !password) {
             alert('Preencha todos os campos')
+            return;
         }
 
         api.post('/users', {name, email, password})
@@ -62,7 +63,7 @@ export function SignUp() {
                 />
 
                 <Button text="Criar Conta" onClick={handleSignUp}/>
-                <button id="nav">Já tenho uma Conta</button>
+                <button id="nav" onClick={() => navigate(-1)}>Já tenho uma Conta</button>
             </section>
             
         </Container>

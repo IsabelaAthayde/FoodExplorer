@@ -71,6 +71,7 @@ export const Container = styled.div`
                     align-items: start;
                     font-weight: 400;
                     color: ${({theme}) => theme.COLORS.LIGHT_400};
+                    border: ${({hasImage}) => hasImage ? `green solid 1px` : "none" };
 
                     > div.file {
                         display: flex;

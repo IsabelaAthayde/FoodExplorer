@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-        width: 100vw;
-        height: 100vh;
+        width: inherit;
+        height: inherit;
         position: relative;
+        padding: 2rem;
+
+        overflow: scroll;
 
     > header {
         width: 100%;
@@ -25,7 +28,7 @@ export const Container = styled.div`
         }
     }
 
-    > div  {
+    > div.search  {
         width: 90%;
         height: 4.8rem;
         display: flex;
@@ -42,12 +45,11 @@ export const Container = styled.div`
         border-radius: 8px;
     }
 
-    > section {
+    > section.handleButtons {
         display: grid;
         width: 90%;
         height: fit-content;
-        margin: 0 auto;
-
+        margin: 0 auto 3rem;
         a {
             text-decoration: none;
             color: ${({theme}) => theme.COLORS.LIGHT_300};
@@ -56,6 +58,18 @@ export const Container = styled.div`
             border-bottom: ${({theme }) => `1px ${theme.COLORS.DARK_1000} solid`};
             font-family: 'Poppins', sans-serif;
         }
+    }
+
+    > section#list-search {
+        width: 100%;
+        height: fit-content;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1rem;
+        margin: 0 auto 100px;
+
+        place-items: center;
     }
 
     > footer {

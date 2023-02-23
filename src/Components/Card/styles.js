@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    min-width: 210px;
-    min-height: 292px;
+    width: 210px;
+    min-height: 302px;
     height: fit-content;
 
     display: flex;
@@ -33,6 +33,7 @@ export const Container = styled.div`
         font-size: 1.4rem;
         display: flex;
         align-items: center;
+        height: 51px;
 
         font-family: 'Poppins', sans-serif;
     }

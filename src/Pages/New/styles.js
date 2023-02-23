@@ -164,6 +164,11 @@ export const Container = styled.div`
                 > label#Ingredient {
                     flex: 2;
 
+                    @media (min-width: 768px) {
+                        width: 80%;
+                    }
+                    
+
                     div#tagitem-container {
                         width: 100%;
                         height: 4.8rem;
@@ -181,6 +186,19 @@ export const Container = styled.div`
 
                         overflow-x: auto;
                         overflow-y: hidden;
+
+                        &::-webkit-scrollbar {
+                            width: 2px;
+                            height: 3px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            background-color: ${({theme}) => theme.COLORS.DARK_900};
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            background-color: ${({theme}) => theme.COLORS.LIGHT_500};
+                        }
                     }
                 }
 
