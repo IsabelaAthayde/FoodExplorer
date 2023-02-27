@@ -4,40 +4,65 @@ import { Footer } from '../../Components/Footer';
 import { Header } from "../../Components/Header";
 import { Icon } from "../../Components/Icon";
 
-import MaskGroup1 from "../../assets/Food/MaskGroup1.png";
 import CreditCard from "../../assets/icons/CreditCard.svg";
 import PIX from "../../assets/icons/PIX.svg";
 import qrcode from "../../assets/qrcode.png";
 
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { useCartContext } from "../../hooks/cart";
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useState } from "react";
 
 export function Payment({isAdmin}) {
+    const { productsCart,
+            removeProductFromCart
+          } = useCartContext();
+
+    const [ total, setTotal ] = useState(0)
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        function calculateTotal() {
+            let tot = 0;
+            for(let i = 0; i < productsCart.length; i++) {
+                tot = tot + (productsCart[i].price * productsCart[i].qtd)
+            }
+            setTotal(tot)
+        }
+        calculateTotal()
+    }, [removeProductFromCart])
+
     return (
         <Container isAdmin={isAdmin}>
             <Header isAdmin={isAdmin} />
 
+                <button
+                id="back" 
+                icon={<MdKeyboardArrowLeft />} 
+                text="Voltar" 
+                onClick={() => navigate(-1)}
+                />
             <main>
                 <section id="my-orders">
                     <h2>Meu Pedido</h2>
                     <div id='container'>
-                        <div className="order">
-                            <img className="food" src={MaskGroup1} alt="" />
+                        {productsCart &&
+                            productsCart.map((product) => (
+                                <div className="order" key={`div-${product.id}`}>
+                                    <img  key={`img-${product.id}`} className="food" src={product.image} alt="imagem da comida" />
 
-                            <aside>
-                                <h3>1 X Salada Radish <span className="price">R$ 25,97</span></h3>
-                                <span>Excluir</span>
-                            </aside>
-                        </div>
-                        <div className="order">
-                            <img className="food" src={MaskGroup1} alt="" />
-
-                            <aside>
-                                <h3>1 X Salada Radish <span className="price">R$ 25,97</span></h3>
-                                <span>Excluir</span>
-                            </aside>
-                        </div>
+                                    <aside key={`as-${product.id}`}>
+                                        <h3 key={`h3-${product.id}`}>{product.qtd} X {product.title} <span className="price">R$ {product.price}</span></h3>
+                                        <span key={`span-${product.id}`} onClick={() => removeProductFromCart(product.id)}>Excluir</span>
+                                    </aside>
+                                </div>
+                            ))
+                        }
                     </div>
 
-                    <h4>Total: R$ 103,88</h4>
+                    <h4>Total: R$ {Number(total)}</h4>
                 </section>
 
                 <section id="payment">
@@ -45,8 +70,8 @@ export function Payment({isAdmin}) {
 
                     <div id="pay-container">
                         <div id="options">
-                            <button><Icon src={PIX} /> PIX</button>
-                            <button><Icon src={CreditCard} /> Crédito</button>
+                            <Icon src={PIX}> PIX </Icon>
+                            <Icon src={CreditCard}> Crédito </Icon>
                         </div>
 
                         <div id="img-container">

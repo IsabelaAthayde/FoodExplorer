@@ -39,6 +39,7 @@ export const Container = styled.div`
     }
 
     > h1 {
+        cursor: pointer;
         @media (max-width: 768px) {
             > img {
                 width: 30px;

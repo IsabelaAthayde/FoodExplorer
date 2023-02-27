@@ -3,7 +3,7 @@ import { Container } from "./styles";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { api } from "../../services/api";
-import { useAuth } from "../../hooks/auth";
+import { useCartContext } from "../../hooks/cart";
 
 import { Footer } from '../../Components/Footer';
 import { Button } from '../../Components/Button';
@@ -16,12 +16,16 @@ import Receipt from "../../assets/icons/Receipt.svg";
 
 
 export function Details({isAdmin}) {
-    const { useMeal } = useAuth()
+    const { productsCart = [],
+        incrementProductQuantity,
+        addProductsToCart,
+        removeProductFromCart
+    } = useCartContext();
+
 
     const [mealImage, setMealImage] = useState(null);
     const [meals, setMeals] = useState("");
     const [tags, setTags] = useState(null);
-    const [form, setForm] = useState(null);
 
     const navigate = useNavigate();
     const params = useParams();
@@ -33,10 +37,11 @@ export function Details({isAdmin}) {
             setMeals(response.data)
             setTags(response.data.tags)
             setMealImage(`${api.defaults.baseURL}/files/${response.data.image}`)
+
+            console.log(productsCart)
         }
         fetchDetails(params.id)
-   }, [])
-
+    }, [])
 
     return (
         <Container isAdmin={isAdmin}>
@@ -69,18 +74,30 @@ export function Details({isAdmin}) {
                                 <div style={{display: "none"}}></div>
                             ) : (
                                 <div className="quantity">
-                                    <a><AiOutlineMinus /></a>
-                                    <span>01</span>
-                                    <a><AiOutlinePlus /></a>
+                                    <a onClick={(e) => {
+                                        removeProductFromCart(meals.id) 
+                                    }}><AiOutlineMinus /></a>
+                                    <span>
+                                    {productsCart &&
+                                    productsCart.find(product => product.id == params.id)?.qtd ?
+                                      productsCart.find(product => product.id == params.id)?.qtd
+                                      : '0'
+                                    }
+                                    </span>
+                                    <a 
+                                    onClick={(e) => {
+                                        incrementProductQuantity(meals.id) 
+                                    }}
+                                    ><AiOutlinePlus /></a>
                                 </div>
                                 
                             )}
 
                             {isAdmin ? 
                             (
-                                <Button text="Editar prato" onClick={() => navigate(`/edit/${24}`)}/>
+                                <Button text="Editar prato" onClick={() => navigate(`/edit/${meals.id}`)}/>
                             ) : (
-                                <Button text={`Pedir - R$ ${meals.price}`} icon={<img src={Receipt}/>}  />
+                                <Button onClick={addProductsToCart} text={`Pedir - R$ ${meals.price}`} icon={<img src={Receipt}/>}  />
                             )}
 
                         </section>

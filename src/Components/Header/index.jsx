@@ -13,8 +13,9 @@ import SignOut from "../../assets/icons/SignOut.svg";
 import Receipt from "../../assets/icons/Receipt.svg";
 import Menu from "../../assets/icons/Menu.svg";
 
-export function Header({ isAdmin, ...rest }) {
+export function Header({ isAdmin, getSearch, ...rest }) {
     const { signOut } = useAuth();
+
 
     const navigate = useNavigate();
 
@@ -25,8 +26,14 @@ export function Header({ isAdmin, ...rest }) {
                 <img src={Menu} alt="" />
             </button>
 
-            <Logo isAdmin={isAdmin} />
-            <LabeledInput  name="search" type="text" icon={<BsSearch/>} placeholder="Busque por pratos ou ingredientes" />
+            <Logo isAdmin={isAdmin} onClick={() => navigate("/")}/>
+            <LabeledInput 
+            name="search" 
+            type="text" 
+            icon={<BsSearch/>} 
+            onChange={e => getSearch(e.target.value)}
+            placeholder="Busque por pratos ou ingredientes" 
+            />
            
             <button id="receipt" onClick={() => navigate("/payment")}>
                 <img src={Receipt} alt="" />

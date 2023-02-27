@@ -5,6 +5,15 @@ export const Container = styled.div`
     height: 100vh;
     position: relative;
 
+    > button:first-of-type {
+        width: fit-content;
+        height: fit-content;
+        margin: 3rem 5rem 0;
+
+        font-size: 2rem;
+        background-color: transparent;
+    }
+
     > main {
         width: 100%;
         height: 100%;
@@ -37,6 +46,7 @@ export const Container = styled.div`
                     display: flex;
                     align-items: center;
                     gap: 1.3rem;
+                    margin-bottom: 2rem;
     
                     width: 100%;
                     height: fit-content;
@@ -106,6 +116,11 @@ export const Container = styled.div`
                         justify-content: center;
                         align-items: center;
                         gap: .8rem;
+
+                        img {
+                            width: 32px;
+                            height: 32px;
+                        }
                     }
                     
                     > button:first-of-type {

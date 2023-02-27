@@ -68,10 +68,9 @@ function AuthProvider({ children }) {
                     return;
                 }
 
-              const meal = await useMeal({title: mealUpdated.title});
-                console.log(meal);
+              const response = await api.get(`/meals?title=${mealUpdated.title}`)
                 
-                await api.patch(`/meals/image/${meal.data[0].id}`, fileUploadForm);
+                await api.patch(`/meals/image/${response.data[0].id}`, fileUploadForm);
             };
         
             

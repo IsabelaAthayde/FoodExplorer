@@ -43,7 +43,9 @@ export const Container = styled.div`
         font-weight: 400;
         font-size: 1.4rem;
         text-align: center;
-
+        max-width: 16.2rem;
+        max-height: 5.2rem;
+        overflow: hidden;
         @media (max-width: 200px) {
             display: none;
         }

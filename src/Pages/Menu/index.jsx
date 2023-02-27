@@ -29,8 +29,7 @@ export function Menu({isAdmin}) {
     useEffect(()=> {
         async function fetchSearch() {
             const response = await api.get(`/meals?title=${search}`) 
-            setMeals(response.data)
-            
+            setMeals(response.data) 
         }
         fetchSearch()
     }, [search])
