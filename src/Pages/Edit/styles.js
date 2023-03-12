@@ -171,6 +171,7 @@ export const Container = styled.div`
                 > label#Ingredient {
                     @media (min-width: 768px) {
                         flex: 2;
+                        min-width: 450px
                     }
 
                     div#tagitem-container {
@@ -195,7 +196,8 @@ export const Container = styled.div`
                 }
                 > div.price {
                     @media (min-width: 768px) {
-                       width: 30rem;
+                        min-width: 8rem;
+                        max-width: 25.1rem;
                         label {
                             margin: 0;
                         }

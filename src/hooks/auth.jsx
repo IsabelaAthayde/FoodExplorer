@@ -56,11 +56,8 @@ function AuthProvider({ children }) {
 
             const fileUploadForm = new FormData();
             fileUploadForm.append("image", mealImageFile);
-            
-            // const response = await api.patch(`/meals/image/${id}`, fileUploadForm)
-            // mealUpdated.image = response.data.image;
 
-            const posted = await api.post("/meals", {mealUpdated});
+            const posted = await api.post("/meals", mealUpdated);
             
             if(posted) {
                 if(!mealUpdated.title) {
@@ -68,11 +65,13 @@ function AuthProvider({ children }) {
                     return;
                 }
 
-              const response = await api.get(`/meals?title=${mealUpdated.title}`)
+                const response = await api.get(`/meals?title=${mealUpdated.title}`)
                 
                 await api.patch(`/meals/image/${response.data[0].id}`, fileUploadForm);
             };
-        
+            
+            alert("Prato cadastrado com sucesso!")
+            return true;
             
         } catch(error) {
             if(error.response) {
@@ -106,14 +105,16 @@ function AuthProvider({ children }) {
             if(!mealUpdated.title) {
                 mealUpdated.title = meal.title;
             }
-            if(!mealUpdated.category) {
+            if(!mealUpdated.category || mealUpdated.category == "default") {
                 mealUpdated.category = meal.category;
             }
             if(!mealUpdated.description) {
                 mealUpdated.description = meal.description;    
             }
+
             if(!mealUpdated.price) {
                 mealUpdated.price = meal.price;
+
             }
             
             if(mealImageFile) {

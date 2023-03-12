@@ -7,7 +7,6 @@ import { api } from "../../services/api";
 
 import { Footer } from '../../Components/Footer';
 import { LabeledInput } from '../../Components/LabeledInput';
-import { Card } from '../../Components/Card';
 import { Icon } from '../../Components/Icon';
 import { BsSearch } from 'react-icons/bs';
 
@@ -62,12 +61,17 @@ export function Menu({isAdmin}) {
             )} 
 
             <section id="list-search">
-                {meals &&
+                {search &&
                     meals.map(meal => (
-                        <Card
-                        data={meal}
-                        key={String(meal.id)}
-                        />
+                        <div className="order" key={`div-${meal.id}`} >
+                            <img  key={`img-${meal.id}`} className="food" src={`${api.defaults.baseURL}/files/${meal.image}`} alt="imagem da comida" />
+
+                            <aside key={`as-${meal.id}`}>
+                                <h3 key={`h3-${meal.id}`}>{meal.title} </h3>
+                                <span className="price">R$ {meal.price}</span>
+                                <span className="details" onClick={() => navigate(`/details/${meal.id}`)}>Clique aqui para ver os detalhes</span>
+                            </aside>
+                        </div>
                     ))
                 }
             </section>

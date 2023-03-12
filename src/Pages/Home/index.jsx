@@ -4,13 +4,11 @@ import { api } from "../../services/api";
 
 import { Footer } from '../../Components/Footer';
 import { Header } from "../../Components/Header";
-import { Meals } from "../../Components/Meals";
-
-import Slide from '../../Components/Slide';
+import { CardsSlider } from "../../Components/CardsSlider";
 
 export function Home({isAdmin}) {
     const [meals, setMeals] = useState([]);
-    const [mainDishes, setMainDishes] = useState([]);
+    const [desserts, setDesserts] = useState([]);
     const [drinks, setDrinks] = useState([]);
     const [search, setSearch] = useState('');
 
@@ -18,9 +16,9 @@ export function Home({isAdmin}) {
         async function fetchCategorys() {
             const mealCategory = await api.get(`/meals?category=meal&title=${search}`) 
             setMeals(mealCategory.data)
-        
-            const mainDishesCategory = await api.get(`/meals?category=main-dish&title=${search}`) 
-            setMainDishes(mainDishesCategory.data)
+            
+            const dessertsCategory = await api.get(`/meals?category=dessert&title=${search}`) 
+            setDesserts(dessertsCategory.data)
             
             const drinksCategory = await api.get(`/meals?category=drink&title=${search}`) 
             setDrinks(drinksCategory.data)
@@ -45,18 +43,9 @@ export function Home({isAdmin}) {
                 </div>
             </section>
             
-            <Meals isAdmin={isAdmin} title="Refeições">
-                <Slide isAdmin={isAdmin} category={meals}/>
-            </Meals>
-
-            <Meals isAdmin={isAdmin}  title="Pratos Principais">
-                <Slide isAdmin={isAdmin} category={mainDishes}/>
-            </Meals>
-
-            <Meals isAdmin={isAdmin}  title="Bebidas">
-                <Slide isAdmin={isAdmin} category={drinks}/>
-            </Meals>
-            
+                <CardsSlider isAdmin={isAdmin} data={meals} category="Refeições"/>      
+                <CardsSlider isAdmin={isAdmin} data={desserts} category="Sobremesas"/>
+                <CardsSlider isAdmin={isAdmin} data={drinks} category="Bebidas"/>
 
             <Footer/>
         </Container>

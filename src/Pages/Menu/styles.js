@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-        width: inherit;
-        height: inherit;
-        position: relative;
-        padding: 2rem;
-
-        overflow: scroll;
+        width: 100vw;
+        height: 100vh;
+    position: relative;
+        overflow-x: hidden;
 
     > header {
         width: 100%;
-        height: 114px;
         max-height: 114px;
 
         display: flex;
@@ -61,8 +58,7 @@ export const Container = styled.div`
     }
 
     > section#list-search {
-        width: 100%;
-        height: fit-content;
+        width: 90%;
 
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -70,12 +66,49 @@ export const Container = styled.div`
         margin: 0 auto 100px;
 
         place-items: center;
+
+        > div.order {
+            display: flex;
+            align-items: center;
+            gap: 1.3rem;
+            margin-bottom: 2rem;
+
+            width: 100%;
+            height: fit-content;
+
+            img.food {
+                width: 7.2rem;
+                height: 7.2rem;
+            }
+
+            > aside {
+                display: grid;
+                gap: .5rem;
+                h3 {
+                    font-size: 2rem;
+                    font-family: 'Poppins', sans-serif;
+                    color: ${({theme}) => theme.COLORS.LIGHT_300};
+                    font-weight: 400;
+                    
+                }
+                
+                > span.price, span.details {
+                    font-size: 1.2rem;
+                    color: ${({theme}) => theme.COLORS.LIGHT_500};
+                }
+
+                > span.details {
+                    &:hover {
+                        color: ${({theme}) => theme.COLORS.CAKE_100};
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
     }
 
     > footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+       position: absolute;
+       bottom: 0;
     }
 `;

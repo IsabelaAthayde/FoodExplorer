@@ -10,12 +10,14 @@ import { Footer } from '../../Components/Footer';
 import { Button } from '../../Components/Button';
 import { TagItem } from '../../Components/TagItem';
 import { LabeledInput } from '../../Components/LabeledInput';
+import { Error } from '../../Components/Error';
 import { Icon } from '../../Components/Icon';
 
 import { Header } from "../../Components/Header";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { HiArrowUpTray } from 'react-icons/hi2';
 import { useAuth } from "../../hooks/auth";
+import { useEffect } from "react";
 
 export function New({isAdmin}) {
     const { createMeal } = useAuth()
@@ -33,6 +35,11 @@ export function New({isAdmin}) {
 
     const navigate = useNavigate();
     const params = useParams();
+
+    useEffect(()=> {
+        let isBlocked;
+        {isAdmin ? isBlocked = false : isBlocked = true}
+    }, [])
     
     function handleAddTag() {
         setTags(prevState => [...prevState, newTag]);
@@ -55,21 +62,21 @@ export function New({isAdmin}) {
     }
 
     async function handleNewMeal() {
-            const mealUpdated = {
-                title,
-                category,
-                price,
-                tags,
-                description
-            }
+        const mealUpdated = {
+            title,
+            category,
+            price,
+            tags,
+            description
+        }
 
-            
-            await createMeal({ mealUpdated, mealImageFile })
-    
-            alert("Prato cadastrado com sucesso!")
+        const result = await createMeal({ mealUpdated, mealImageFile });
+        if(result) {
             navigate(-1)
+        }
     }
 
+    if(isAdmin) {
     return (
         <Container>
             <Header isAdmin />
@@ -109,8 +116,9 @@ export function New({isAdmin}) {
             
                         <label htmlFor="Category" id="Category">Categoria
                             <select name="Category" placeholder="Refeição" onChange={e => setCategory(e.target.value)}>
+                                <option value="default">Escolha uma das opções</option>
                                 <option value="meal">Refeição</option>
-                                <option value="main-dish">Pratos principais</option>
+                                <option value="dessert">Sobremesa</option>
                                 <option value="drink">Bebidas</option>
                             </select>
                         </label>
@@ -141,7 +149,10 @@ export function New({isAdmin}) {
                         </div>
                     </label>
 
-                    <LabeledInput 
+                    <LabeledInput
+                    type="number"
+                    min="0"
+                    step=".01"
                     name="price" 
                     label="Preço" 
                     placeholder="R$ 00,00" 
@@ -164,4 +175,9 @@ export function New({isAdmin}) {
             <Footer/>
         </Container>
     )
+    } else {
+        return (
+            <Error />
+        )
+    }
 }

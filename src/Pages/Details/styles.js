@@ -6,7 +6,8 @@ export const Container = styled.div`
     overflow: scroll;
 
     main {
-        width: 100vw;
+        width: 100%;
+        height: 100%;
 
         display: flex;
         flex-direction: column;
@@ -98,15 +99,13 @@ export const Container = styled.div`
                 div#tags-container {
                     width: inherit;
                     height: fit-content;
-                    padding: 0 2.8rem;
     
                     display: grid;
-                    grid-template-columns: auto auto auto;
+                    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
                     place-items: center;
                     gap: 2.4rem;
 
                     @media (min-width: 768px) {
-                        grid-template-columns: repeat( auto-fit, minmax(90px, 1fr) );
                         padding: 0;
                         gap: 2rem;
                     }
@@ -119,10 +118,15 @@ export const Container = styled.div`
                         background-color: ${({theme}) => theme.COLORS.DARK_1000};
                         border-radius: 5px;
                         color: ${({theme}) => theme.COLORS.LIGHT_100};
-                        max-height: 45px;
-                        width: 9.8rem;
-                        white-space: nowrap;
+                        min-height: 45px;
+                        max-width: 100px;
+                        width: fit-content;
+                        white-space: pre-wrap;
                         text-align: center;
+
+                        @media (min-width: 900px) {
+                            max-width: 160px;
+                        }
                             
                         &:hover {
                             transform:  scale(1.1);
