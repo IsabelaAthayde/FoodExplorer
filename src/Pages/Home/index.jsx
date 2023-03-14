@@ -24,6 +24,7 @@ export function Home({isAdmin}) {
             setDrinks(drinksCategory.data)
         }
         fetchCategorys()
+        console.log(meals,desserts,drinks)
     }, [search])
 
     function getSearch(e) {
@@ -42,10 +43,10 @@ export function Home({isAdmin}) {
                     </div>
                 </div>
             </section>
-            
-                <CardsSlider isAdmin={isAdmin} data={meals} category="Refeições"/>      
-                <CardsSlider isAdmin={isAdmin} data={desserts} category="Sobremesas"/>
-                <CardsSlider isAdmin={isAdmin} data={drinks} category="Bebidas"/>
+
+            {meals.length === 0 ? <div style={{display: "none"}}></div> : <CardsSlider isAdmin={isAdmin} data={meals} category="Refeições"/> }
+            {desserts.length === 0 ? <div style={{display: "none"}}></div> : <CardsSlider isAdmin={isAdmin} data={desserts} category="Sobremesas"/>}
+            {drinks.length === 0 ? <div style={{display: "none"}}></div> : <CardsSlider isAdmin={isAdmin} data={drinks} category="Bebidas"/>}
 
             <Footer/>
         </Container>

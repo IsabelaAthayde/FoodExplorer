@@ -10,6 +10,8 @@ import { LabeledInput } from '../../Components/LabeledInput';
 import { Icon } from '../../Components/Icon';
 import { BsSearch } from 'react-icons/bs';
 
+import Heart from "../../assets/icons/Heart.svg";
+import Pencil from "../../assets/icons/Pencil.svg";
 import Close from "../../assets/icons/Close.svg";
 
 export function Menu({isAdmin}) {
@@ -67,7 +69,14 @@ export function Menu({isAdmin}) {
                             <img  key={`img-${meal.id}`} className="food" src={`${api.defaults.baseURL}/files/${meal.image}`} alt="imagem da comida" />
 
                             <aside key={`as-${meal.id}`}>
-                                <h3 key={`h3-${meal.id}`}>{meal.title} </h3>
+                                <h3 key={`h3-${meal.id}`}>{meal.title} <Icon className="favIcon" 
+                                src={isAdmin ? Pencil : Heart} 
+                                onClick={(e) => {
+                                    {isAdmin ? navigate(`/edit/${food.id}`) : navigate(`/favorites`)}
+                                }}
+                                />
+                                </h3>
+                                
                                 <span className="price">R$ {meal.price}</span>
                                 <span className="details" onClick={() => navigate(`/details/${meal.id}`)}>Clique aqui para ver os detalhes</span>
                             </aside>

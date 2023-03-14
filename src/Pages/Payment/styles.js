@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: inherit;
+    min-height: 100%;
     position: relative;
 
     > button:first-of-type {
@@ -12,12 +13,23 @@ export const Container = styled.div`
 
         font-size: 2rem;
         background-color: transparent;
+        border: none;
     }
 
     > main {
         width: 100%;
         height: 100%;
-        padding: 5rem;
+        padding: 5rem 5rem 20rem;
+
+        display: flex;
+        gap: 2rem;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+        }
 
         h2 , h4 {
             width: 90%;
@@ -29,8 +41,7 @@ export const Container = styled.div`
             font-size: 3.2rem;
         }
 
-        display: flex;
-        gap: 2rem;
+       
 
         > section#my-orders {
 
@@ -41,7 +52,10 @@ export const Container = styled.div`
             gap: 3.2rem;
 
             > div#container {
-
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                max-height: 44.5rem;
+                overflow: auto;
                 > div {
                     display: flex;
                     align-items: center;
@@ -62,7 +76,7 @@ export const Container = styled.div`
                             font-family: 'Poppins', sans-serif;
                             color: ${({theme}) => theme.COLORS.LIGHT_300};
                             font-weight: 400;
-                            
+                            white-space: nowrap;
                             > span.price {
                                 font-size: 1.2rem;
                                 color: ${({theme}) => theme.COLORS.LIGHT_500};

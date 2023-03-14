@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: inherit;
+    min-height: 100%;
     position: relative;
 
     > main {
         width: 100%;
         height: 100%;
-        padding: 5rem;
+        padding: 5rem 5rem 20rem;
 
         > h2 {
             width: 90%;
@@ -29,9 +30,8 @@ export const Container = styled.div`
             display: grid;
             gap: 3.2rem;
 
-            @media (min-width: 768px) {
-                grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
-            }
+            grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+
 
             > div {
                 display: flex;
@@ -40,6 +40,7 @@ export const Container = styled.div`
 
                 width: 100%;
                 height: 100%;
+                cursor: pointer;
 
                 img.food {
                     width: 7.2rem;

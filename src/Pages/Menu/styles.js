@@ -89,7 +89,10 @@ export const Container = styled.div`
                     font-family: 'Poppins', sans-serif;
                     color: ${({theme}) => theme.COLORS.LIGHT_300};
                     font-weight: 400;
-                    
+
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
                 }
                 
                 > span.price, span.details {
@@ -108,7 +111,8 @@ export const Container = styled.div`
     }
 
     > footer {
-       position: absolute;
+       position: fixed;
        bottom: 0;
+       z-index: 1;
     }
 `;

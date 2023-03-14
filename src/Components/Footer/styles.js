@@ -8,7 +8,11 @@ export const Container = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+    
     background-color: ${({theme}) => theme.COLORS.DARK_600};
     border: none;
 

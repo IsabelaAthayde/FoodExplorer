@@ -29,7 +29,7 @@ export function Payment({isAdmin}) {
             for(let i = 0; i < productsCart.length; i++) {
                 tot = tot + (productsCart[i].price * productsCart[i].qtd)
             }
-            setTotal(tot)
+            setTotal(tot.toFixed(2))
         }
         calculateTotal()
     }, [removeProductFromCart])
@@ -40,10 +40,9 @@ export function Payment({isAdmin}) {
 
                 <button
                 id="back" 
-                icon={<MdKeyboardArrowLeft />} 
-                text="Voltar" 
+                icon={<MdKeyboardArrowLeft />}
                 onClick={() => navigate(-1)}
-                />
+                >Voltar</button>
             <main>
                 <section id="my-orders">
                     <h2>Meu Pedido</h2>

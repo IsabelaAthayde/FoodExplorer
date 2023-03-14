@@ -59,12 +59,8 @@ export const Container = styled.section`
                     img {
                         width: 100%;
                         height: 100%;
-                    }
-                }
-            
-                span.dish {
-                    font-size: 14px;
-                    display: flex;
+                        
+                    } 
                     align-items: center;
             
                     font-family: 'Poppins', sans-serif;

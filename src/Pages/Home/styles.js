@@ -6,8 +6,10 @@ import sloganBig from "../../assets/sloganBig.svg";
 export const Container = styled.div`
     width: inherit;
     height: inherit;
-    overflow: scroll;
+    min-height: 100vh;
+    position: relative;
 
+    padding-bottom: 10rem;
 
     > section#slogan {
         min-height: 14.9rem;
@@ -120,6 +122,4 @@ export const Container = styled.div`
             }
         }
     }
-
-    
 `;

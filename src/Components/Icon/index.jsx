@@ -1,9 +1,9 @@
 import { Container } from './styles';
 
-export function Icon({ src, ...rest }) {
+export function Icon({ src, style, ...rest }) {
     return (
         <Container {...rest}>
-            <img src={src} />
+            <img src={src} style={style} />
         </Container>
     )
 }

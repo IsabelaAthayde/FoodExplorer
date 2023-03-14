@@ -19,7 +19,10 @@ import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 
 
 export function CardsSlider({isAdmin, data, category}) {
-    const { productsCart = [],
+    const { 
+        favorites = [],
+        addToFavorites,
+        productsCart = [],
         incrementProductQuantity,
         addProductsToCart,
         removeProductFromCart
@@ -104,14 +107,20 @@ export function CardsSlider({isAdmin, data, category}) {
                 dragConstraints={{right: 0, left: -width}}
                 style={styles}
                 >
-                    {data.map((food) => (
+                    {data &&
+                    data.map((food) => (
                     <div className='item' key={food.image} onClick={()=> navigate(`/details/${food.id}`)}>
 
                         <Icon className="favIcon" 
-                        src={isAdmin ? Pencil : Heart} 
+                        src={isAdmin ? Pencil : Heart}
+                        style={{
+                            filter: `${favorites.find(favoriteProduct => favoriteProduct.id === food.id) 
+                            ?  "invert(35%) sepia(100%) saturate(7464%) contrast(134%)": "none"}`
+                            }}
+                        
                         onClick={(e) => {
                             e.stopPropagation();
-                            {isAdmin ? navigate(`/edit/${food.id}`) : navigate(`/favorites/${food.id}`)}
+                            {!isAdmin ? addToFavorites(food.id) : navigate(`/edit/${food.id}`)}
                         }}
                         />
                         
