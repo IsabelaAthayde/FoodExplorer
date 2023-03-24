@@ -1,23 +1,19 @@
-import { Container } from './styles';
-
-import { useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { useState, useEffect, useRef } from 'react';
+import { useCartContext } from "../../hooks/cart";
 import { useAuth } from "../../hooks/auth";
-import { BsSearch } from 'react-icons/bs';
+
+import { Container } from './styles';
 
 import { Logo } from '../Logo';
 import { Icon } from '../Icon';
 import { LabeledInput } from "../LabeledInput";
 import { Button } from "../Button";
 
+import { BsSearch } from 'react-icons/bs';
 import SignOut from "../../assets/icons/SignOut.svg";
 import Receipt from "../../assets/icons/Receipt.svg";
 import Menu from "../../assets/icons/Menu.svg";
-
-import { useCartContext } from "../../hooks/cart";
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 export function Header({ isAdmin, getSearch, ...rest }) {
     const { signOut } = useAuth();
@@ -26,18 +22,21 @@ export function Header({ isAdmin, getSearch, ...rest }) {
 
     const header = useRef();
     const navigate = useNavigate();
+    const dropDown = useRef();
 
     const [ ordersQuantity, setOrdersQuantity ] = useState("");
+    const [ isActive, setIsActive ] = useState(false);
     
     useEffect(() => { 
         setOrdersQuantity(productsCart.length)
     }, [productsCart])
 
-    function toggleFavOrPayButton() {
+    function toggleFavOrPayButton(e) {
+        e.preventDefault()
         const isLargeOnScreen = window.innerWidth >= 768;
         
         if(isLargeOnScreen) {
-            navigate('/favorites')
+            setIsActive(!isActive);
             return
         }
         navigate('/payment')
@@ -59,10 +58,20 @@ export function Header({ isAdmin, getSearch, ...rest }) {
             placeholder="Busque por pratos ou ingredientes" 
             />
 
-            <button id="receipt" onClick={() => toggleFavOrPayButton()}>
+            <button id="receipt" onClick={(e) => toggleFavOrPayButton(e)}>
                 <img src={Receipt} alt="" />
                 <div id="order">{ordersQuantity}</div>
+
+                <nav
+                ref={dropDown}
+                className={`menu ${isActive ? "active" : "inactive"}`}
+                >
+                    <li><a onClick={()=> navigate("/")}>Home</a></li>
+                    <li><a onClick={()=> navigate("/favorites")}>Favoritos</a></li>
+                    <li><a onClick={()=> navigate("/order-history")}>Histórico de Pedidos</a></li>
+                </nav>
             </button>
+
                           
             <Button 
             id="order-lg-screen" 
@@ -71,7 +80,10 @@ export function Header({ isAdmin, getSearch, ...rest }) {
             onClick={isAdmin ? () => navigate("/new") : () => navigate("/payment")}
             />
             
-            <Icon id="signOut" src={SignOut} onClick={() => signOut()} />
+            <Icon id="signOut" src={SignOut} onClick={async () => {
+                await signOut() 
+                navigate("/")}
+            } />
         </Container>
     )
 }

@@ -22,7 +22,7 @@ export function SignIn() {
     }
     
     return (
-        <Container>
+        <Container onKeyDown={(e) => {if(e.key === 'Enter') { handleSignIn() } }}>
             <Logo/>
 
             <section id="login">
@@ -41,7 +41,7 @@ export function SignIn() {
                 onChange={e => setPassword(e.target.value)}
                 />
 
-                <Button text="Entrar" onClick={handleSignIn}/>
+                <Button text="Entrar"  onClick={handleSignIn}/>
                 <button id="nav" onClick={() => navigate("/register")}>Criar Conta</button>
             </section>
             

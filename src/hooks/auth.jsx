@@ -1,12 +1,35 @@
 import { useState, useEffect } from "react";
 import { createContext, useContext } from "react";
 import { api } from "../services/api";
+import { useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
     const [data, setData] = useState({});
     const [image, setImage] = useState([]);
+    
+
+    
+    const parseJwt = (token) => {
+      try {
+        return JSON.parse(atob(token.split(".")[1]));
+      } catch (e) {
+        return null;
+      }
+    };
+
+    useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("@foodexplorer:user"));
+    const token = localStorage.getItem("@foodexplorer:token")
+
+    if (user) {
+        const decodedJwt = parseJwt(token);
+        if (decodedJwt.exp * 1000 < Date.now()) {
+        signOut();
+        }
+    }
+    }, [ data]);
 
     useEffect(() => {
         const token = localStorage.getItem("@foodexplorer:token")
@@ -14,6 +37,7 @@ function AuthProvider({ children }) {
     
         if(user && token) {
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
             setData({
                 token,
                 user: JSON.parse(user),
@@ -44,12 +68,15 @@ function AuthProvider({ children }) {
     }
 
     function signOut() {
+        
         localStorage.removeItem('@foodexplorer:user')
         localStorage.removeItem('@foodexplorer:token')
 
         setData({})
     }
-
+    
+    
+    
     async function createMeal({mealUpdated, mealImageFile}) {
         try {
             setImage(mealImageFile);

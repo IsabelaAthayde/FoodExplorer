@@ -6,7 +6,7 @@ export const Container = styled.div`
     max-height: 114px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 
     background-color: ${({theme}) => theme.COLORS.DARK_600};
@@ -104,6 +104,7 @@ export const Container = styled.div`
         background: transparent;
         border: none;
         position: relative;
+        filter: none;
 
         @media (max-width: 768px) {
             visibility: ${({isAdmin}) => isAdmin ? 'hidden' : "visible"};
@@ -132,7 +133,47 @@ export const Container = styled.div`
                 display: none;
             }
         }
+
+        .menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .menu {
+            @media (max-width: 768px) {
+            display: none
+            }
+
+            opacity: 0;
+            visibility: hidden;
+    
+            position: absolute;
+            top: 50px;
+            left: 0;
+            z-index: 4;
+
+            width: fit-content;
+            background-color: ${({theme}) => theme.COLORS.DARK_700};
+
+            padding: 2rem 1.6rem 1rem;
+            border-radius: 10px;
+            filter: none;
+
+            &:hover {
+                background: linear-gradient(180deg, rgba(0,17,25,1) 22%, rgba(0,17,25,0.6250875350140056) 100%);
+            }
+
+            > li {
+                list-style: none;
+                white-space: nowrap;
+                text-align: left;
+                &:hover {
+                    color: ${({theme}) => theme.COLORS.LIGHT_200};
+
+                }
+            }
+        }
     }
+
 
     > button#order-lg-screen  {
         max-width: 216px;

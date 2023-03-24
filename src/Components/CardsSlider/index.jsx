@@ -1,5 +1,5 @@
 import { Container } from './styles.js';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,6 @@ import { Icon } from '../Icon';
 
 import Heart from "../../assets/icons/Heart.svg";
 import Pencil from "../../assets/icons/Pencil.svg";
-import MaskGroup1 from "../../assets/Food/MaskGroup1.png";
 
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
@@ -29,83 +28,86 @@ export function CardsSlider({isAdmin, data, category}) {
     } = useCartContext();
 
     const carousel = useRef();
+    const animation = useAnimation();
 
     const [width, setWidth] = useState(0);
     const [count, setCount] = useState(0);
-    const [styles, setStyles] = useState({});
+
+    const [singleWidth, setSingleWidth] = useState(undefined);
+    const [slidesWidth, setSlidesWidth] = useState(undefined);
+    const [containerWidth, setContainerWidth] = useState(undefined);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setTimeout(() => {
+        const slider = carousel.current;
+        let slidesWidth = 0;
+
             setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-          }, 1000);
+
+            Array.from(slider.children).forEach((slide) => {
+                const slideWidth = slide.clientWidth;
+                const slideMargin = 40;
+                slidesWidth += slideWidth + slideMargin;
+            })
+
+            setSlidesWidth(slidesWidth)
+            setContainerWidth(slider.clientWidth);
+            setSingleWidth(slider.children[0].clientWidth);
    }, [carousel.current, carousel])
 
-   async function handleSwipeLeft(e) {
-       
-        if(count < 0) {
-            setCount(prev => prev + 80)
+   function handleLeftArrow() {
+    const xPos = getTranslateXValue(carousel.current);
+    const newXposition = xPos + singleWidth;
+    const constraint = +20;
 
-            const style = {
-                transform: `translateX(${count}px)`,
-                transition: "all 0.1s ease"
-            }
+    animation.start({
+        x: newXposition > constraint ? constraint : newXposition,
+    });
 
-            setStyles(style)
-        } else {
-            setCount(0)
-
-            const style = {
-                transform: `translateX(${count}px)`,
-                transition: "all 0.3s ease"
-            }
-
-            setStyles(style)
-        }
-        console.log(`count:${count}`)
    }
 
-   function handleSwipeRight(e) {
+   function handleRightArrow() {
+    const xPos = getTranslateXValue(carousel.current);
+    const newXposition = xPos - singleWidth;
+    const constraint = containerWidth - slidesWidth + 40;
+  
+    animation.start({
+        x: newXposition < constraint ? constraint : newXposition,
+    });
 
-    if(count > (width * -1)) {   
-        console.log( `count:${count}`)
+   }
 
-        if(count === 0) {
-           setCount(-80)
-        } else if(count < 0) {
-            setCount(prev => prev - 80)
-        }
-            console.log( `count:${count}`)
-           const style = {
-               transform: `translateX(${count}px)`,
-               transition: "all 0.3s ease"
-           }
-           console.log( `count:${count}`)
-       
-           setStyles(style)
-    } else {
-        setCount(-285)
-        const style = {
-            transform: `translateX(${count}px)`,
-            transition: "all 0.3s ease"
-        }
-    
-        setStyles(style)
-    }
-    
-}
+   function getTranslateXValue(element) {
+    const style = window.getComputedStyle(element);
+    const matrix = new WebKitCSSMatrix(style.transform);
+    console.log(matrix.m41)
+    return matrix.m41;
+    // const transform = element.style.transform;
+
+    // if(!transform || transform.indexOf("translate3d(") < 0 ) {
+    //     return 0
+    // }
+
+    // const extractTranslateX = transform.match(/translate3d\((-?\d+)/)
+
+    // return extractTranslateX && extractTranslateX.length === 2 ? parseInt(extractTranslateX[1], 10) : 0
+   }
 
     return (
         <Container  className="container" isAdmin={isAdmin}>
             
             <span>{category}</span>
 
-            <motion.div ref={carousel} className='carousel' whileTap={{ cursor: "grabbing" }}>
-                <motion.div className='inner'
+            <motion.div  className='carousel' whileTap={{ cursor: "grabbing" }}>
+                <motion.div
+                ref={carousel} 
+                className='inner'
                 drag="x"
-                dragConstraints={{right: 0, left: -width}}
-                style={styles}
+                animate={animation}
+                initial={false}
+                style={{x: 0}}
+                dragConstraints={{right: +20, left: containerWidth - slidesWidth + 40}}
                 >
                     {data &&
                     data.map((food) => (
@@ -165,8 +167,8 @@ export function CardsSlider({isAdmin, data, category}) {
                     </div>
                     ))}
                 </motion.div>
-                <button className='arrow-left' onClick={(e) => handleSwipeLeft(e)}><MdKeyboardArrowLeft/></button>
-                <button className='arrow-right' onClick={(e) => handleSwipeRight(e)}><MdKeyboardArrowRight/></button>
+                <button className='arrow-left' onClick={(e) => handleLeftArrow()}><MdKeyboardArrowLeft/></button>
+                <button className='arrow-right' onClick={(e) => handleRightArrow()}><MdKeyboardArrowRight/></button>
             </motion.div>
 
         </Container>

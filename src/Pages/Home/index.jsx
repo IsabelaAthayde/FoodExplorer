@@ -24,7 +24,6 @@ export function Home({isAdmin}) {
             setDrinks(drinksCategory.data)
         }
         fetchCategorys()
-        console.log(meals,desserts,drinks)
     }, [search])
 
     function getSearch(e) {

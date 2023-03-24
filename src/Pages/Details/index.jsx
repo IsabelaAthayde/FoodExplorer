@@ -10,7 +10,6 @@ import { Button } from '../../Components/Button';
 import { Icon } from '../../Components/Icon';
 import { Header } from "../../Components/Header";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import MaskGroup1 from "../../assets/Food/MaskGroup1.png";
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import Receipt from "../../assets/icons/Receipt.svg";
 

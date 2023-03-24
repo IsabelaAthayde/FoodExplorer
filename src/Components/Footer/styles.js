@@ -19,6 +19,7 @@ export const Container = styled.footer`
     padding: 0 2.7rem;
     @media (max-width: 427px) {
         padding: 0 .8rem;
+        justify-content: flex-start;
 
         > h1 {
             margin-right: 1rem;
@@ -32,6 +33,9 @@ export const Container = styled.footer`
             }
         }
     }
+    @media (max-width: 362px) {
+        flex-direction: column;
+    }
     
     > h1 {
         
@@ -42,18 +46,23 @@ export const Container = styled.footer`
 
         }
 
-        > span {
+        > span#logoName {
            font-size: 1.5rem; 
            white-space: nowrap;
             filter: brightness(40%);
-
+            @media (min-width: 600px) {
+                font-size: 2rem; 
+            }
         }
         
     }
 
     > span {
         font-weight: 400;
-        font-size: 1.2rem; 
+        font-size: 1.6rem;
         white-space: nowrap;
+        @media (max-width: 600px) {
+            font-size: 1.2rem; 
+        }
     }
 `;

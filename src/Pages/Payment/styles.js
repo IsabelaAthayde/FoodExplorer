@@ -19,7 +19,7 @@ export const Container = styled.div`
     > main {
         width: 100%;
         height: 100%;
-        padding: 5rem 5rem 20rem;
+        padding: 1rem 5rem 20rem;
 
         display: flex;
         gap: 2rem;
@@ -55,7 +55,8 @@ export const Container = styled.div`
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 max-height: 44.5rem;
-                overflow: auto;
+                overflow-y: auto;
+                overflow-x: hidden;
                 > div {
                     display: flex;
                     align-items: center;
@@ -71,19 +72,21 @@ export const Container = styled.div`
                     }
     
                     > aside {
+                        display: grid;
                         h3 {
                             font-size: 2rem;
                             font-family: 'Poppins', sans-serif;
                             color: ${({theme}) => theme.COLORS.LIGHT_300};
                             font-weight: 400;
                             white-space: nowrap;
-                            > span.price {
-                                font-size: 1.2rem;
-                                color: ${({theme}) => theme.COLORS.LIGHT_500};
-                            }
                         }
                         
-                        > span {
+                        > span.price {
+                            font-size: 1.2rem;
+                            color: ${({theme}) => theme.COLORS.LIGHT_500};
+                        }
+
+                        > span.delete {
                             font-size: 1.2rem;
                             color: ${({theme}) => theme.COLORS.TOMATO_400}
                         }
@@ -103,7 +106,6 @@ export const Container = styled.div`
 
             > div#pay-container {
                 width: 53rem;
-                height: 44.5rem;
                 border: 1px solid ${({theme}) => theme.COLORS.LIGHT_500};
                 display: grid;
 
@@ -115,7 +117,7 @@ export const Container = styled.div`
 
                 div#options {
                     display: flex;
-                    
+                    height: fit-content;
                     > button {
                         width: 50%;
                         flex: 1;
@@ -144,9 +146,35 @@ export const Container = styled.div`
                 
                 > div#img-container {
                     width: 100%;
-                    height: 100%;
-                    display: grid;
-                    place-items: center;
+                    height: 35rem;
+                    padding: 1rem;
+                    margin: 0 auto;
+                    > div#pix-container {
+                        width: 100%;
+                        height: 100%;
+
+                        img {
+                            display: block;
+                            height: 85%;
+                            margin: 0 auto;
+                        }
+
+                        a {
+                            color:  ${({theme}) => theme.COLORS.LIGHT_400};
+                            margin: 1rem auto;
+                            width: fit-content;
+                            display: block;
+                        }
+                    }
+                    > form {
+                        
+                        div#flex-container {
+                            display: flex;
+                            gap: 1.7rem;
+                            margin: 3.7rem 0;
+
+                        }
+                    }
                 }
             }
         }

@@ -15,7 +15,7 @@ export function Error() {
                     id="back" 
                     icon={<MdKeyboardArrowLeft />} 
                     text="Voltar" 
-                    onClick={()=> navigate(-1)}
+                    onClick={()=> navigate("/")}
                     />
                     <h2 style={{color: "red"}}>401 - Unauthorized</h2>
                     <h2>Acesso negado!! Você não deveria estar acessando essa rota.</h2>
