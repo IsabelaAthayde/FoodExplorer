@@ -29,10 +29,31 @@ export function CreditCardForm({isAdmin, productsCart}) {
     const [expiry, setExpiry] = useState('');
     const [cvc, setCvc] = useState('');
 
-    const [items, setItems] = useState([]);
-    const [data, setData] = useState({});
+    function treatDatas(expiry, cardNumber) {
+        let year = String(expiry).match(/\d{2}$/)[0];
+
+        const todaysYear = String(new Date().getFullYear());
+
+        if(year < todaysYear.match(/\d{2}$/)[0]) {
+            alert('Validade do cartão expirada, use um cartão válido!')
+            return;
+        }
+
+        let expiration_year = `${todaysYear.match(/\d{2}/)[0] + year}`;
+        let expiration_month = String(expiry).match(/\d{2}/)[0];
+        let treatedCardNumber = String(cardNumber).split(' ').join('');
+
+        return {expiration_year, expiration_month, treatedCardNumber}
+    }
 
     function handlePayWithCard() {
+        const newData = treatDatas(expiry, cardNumber)
+
+        if(!newData.expiration_month && !newData.expiration_yearexpiration_year) {
+            alert('Erro ao enviar data de expiração, verifique se os dados estão corretos!')
+            return;
+        }
+        
         let data = {
             street,
             number: streetNumber,
@@ -44,7 +65,12 @@ export function CreditCardForm({isAdmin, productsCart}) {
             email,
             cpf,
             birth,
-            phone_number: phoneNumber
+            phone_number: phoneNumber,
+            brand,
+            cardNumber: newData.treatedCardNumber,
+            expiration_month: newData.expiration_month,
+            expiration_year: newData.expiration_year,
+            cvc
         }
 
         let items = productsCart?.map((product) => (
@@ -54,11 +80,21 @@ export function CreditCardForm({isAdmin, productsCart}) {
                 amount: product.qtd,
             }
         ))
-        console.log(data, items)
 
-        if(!data && !items) {
+        if(!data && !items ) {
            alert("Dados em falta, verifique os dados a serem enviados")
            return
+        }
+
+        for(const info in data) {
+            if(data[info] == 'default') {
+                alert(`Não foi possível identificar a bandeira do cartão, por favor reescreva o número do cartão`)
+                return
+            }
+            if(!data[info]) {
+                alert(`${info} não preenchido, verifique os dados a serem enviados`)
+                return
+            }
         }
 
         api.post('/pay/card', {data, items})
@@ -181,7 +217,7 @@ export function CreditCardForm({isAdmin, productsCart}) {
             mask="cardNumber"
             placeholder="0000 0000 0000 0000"
             value={cardNumber}
-            onChange={(e) =>{ 
+            onChange={(e) => { 
                 setCardNumber(e.target.value) 
                 setBrand(e.target.attributes.cardtype.value)}}
             />
