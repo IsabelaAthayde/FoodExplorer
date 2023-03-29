@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 
+import { api } from "../../services/api.js";
+ 
 import { Container } from "./styles";
 import { Footer } from '../../Components/Footer';
 import { Header } from "../../Components/Header";
@@ -11,6 +13,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 export function OrderHistory({isAdmin}) {
     const [ width, setWidth ] = useState(undefined);
+    const [ cobs, setCobs ] = useState([]);
 
     useEffect(() => {
         function getScreenWidth() {
@@ -18,6 +21,19 @@ export function OrderHistory({isAdmin}) {
         }
         getScreenWidth()
     }, [width, window.innerWidth])
+
+    useEffect(() => {
+        async function fetchCobs() {
+            const cob = localStorage.getItem('@foodexplorer:cobs')
+
+            if(cob) {
+                const response = await api.get('/pay/cobrancas', {cob: JSON.parse(cob)})
+                setCobs([{...response.data.cobs}, {...response.config.cob}])
+                console.log(cobs)
+            }
+        }
+        fetchCobs()
+    }, [])
 
 return (
     <Container>
@@ -44,42 +60,16 @@ return (
             </tr>
             </thead>
             <tbody>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
-            <tr className="tr">
-                <td className="default td status"><Icon className="dot" src={Circle}/>Pendente</td>
-                <td className="default td">000000</td>
-                <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
-                <td className="default td">55555</td>
-            </tr>
+                {cobs &&
+                    cobs.map((cob) => (
+                        <tr key={cob[0].txid + Math.random()} className="tr">
+                            <td className="default td status"><Icon className="dot" src={Circle}/>{cob[0].status}</td>
+                            <td className="default td">{cob[0].loc?.id}</td>
+                            <td className="td">1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x Suco de Maracujá</td>
+                            <td className="default td">{cob[0].calendario?.criacao}</td>
+                        </tr>
+                    ))
+                }
             </tbody>
             </table>
             :

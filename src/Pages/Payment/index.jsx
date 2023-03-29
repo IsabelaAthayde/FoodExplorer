@@ -30,6 +30,8 @@ export function Payment({isAdmin}) {
     const [ qrcode, setQrcode ] = useState('');
     const [ copyText, setCopyText ] = useState('');
 
+    const [ cobData, setCobData ] = useState('');
+
 
     const navigate = useNavigate();
 
@@ -52,34 +54,26 @@ export function Payment({isAdmin}) {
         getScreenWidth()
     }, [width, window.innerWidth])
 
-    useEffect(() => {
-        async function fetchQrCode() {
-            if(total) {
-                const response = await api.post('/pay', {price: total})
-                setQrcode(response.data[0].imagemQrcode)
-                setCopyText(response.data[0].qrcode)
+    async function handlePayWithPix() {
+        if(total) {
+            const response = await api.post('/pay', {price: total, productsCart})
+            setQrcode(response.data[0].imagemQrcode)
+            setCopyText(response.data[0].qrcode)
+            let newCob = response.data[1]
+
+            let cobs = JSON.parse(localStorage.getItem('@foodexplorer:cobs'))
+
+            if(cobs) {
+                localStorage.removeItem('@foodexplorer:cobs')
+                setCobData((prev) => [...prev, newCob])
+                console.log(cobData)
+                localStorage.setItem('@foodexplorer:cobs', JSON.stringify(cobData))
+                return
             }
+            setCobData([newCob])
+            localStorage.setItem('@foodexplorer:cobs', JSON.stringify(cobData))
+
         }
-        fetchQrCode()
-    }, [total])
-
-    async function handlePayWithCard(data) {
-        // let expiration_month = String(expiry).match(/\d{2}/)[0];
-        // let expiration_year = String(expiry).match(/\d{2}$/)[0];
-
-        // if(!expiration_month && !expiration_year) {
-        //     alert('Erro ao enviar data de expiração, verifique se os dados estão corretos!')
-        //     return;
-        // }
-        // const cardRes = await api.post("/pay/card", {
-        // brand,
-        // number,
-        // cvv: cvc,
-        // expiration_month,
-        // expiration_year
-        // })
-
-        //  const cardRes = await api.post("/pay/card", data)
     } 
 
 return (
@@ -105,7 +99,10 @@ return (
                                 <aside key={`as-${product.id}`}>
                                     <h3 key={`h3-${product.id}`}>{product.qtd} X {product.title} </h3>
                                     <span className="price">R$ {product.price}</span>
-                                    <span className="delete" key={`span-${product.id}`} onClick={() => removeProductFromCart(product.id)}>Excluir</span>
+                                    <span className="delete" key={`span-${product.id}`} onClick={() => {
+                                        (product.id) 
+                                        handlePayWithPix()
+                                    }}>Excluir</span>
                                 </aside>
                             </div>
                         ))
@@ -126,7 +123,9 @@ return (
 
                 <div id="pay-container">
                     <div id="options">
-                        <Icon src={PIX} onClick={() => setPixOption(true)}> PIX </Icon>
+                        <Icon src={PIX} onClick={() => {setPixOption(true)
+                        handlePayWithPix()
+                        }}> PIX </Icon>
                         <Icon src={CreditCard} onClick={() => setPixOption(false)}> Crédito </Icon>
                     </div>
 
