@@ -115,7 +115,7 @@ export function CardsSlider({isAdmin, data, category}) {
 
                         <Icon className="favIcon" 
                         src={isAdmin ? Pencil : Heart}
-                        style={{
+                        style={isAdmin ? {} : {
                             filter: `${favorites.find(favoriteProduct => favoriteProduct.id === food.id) 
                             ?  "invert(35%) sepia(100%) saturate(7464%) contrast(134%)": "none"}`
                             }}

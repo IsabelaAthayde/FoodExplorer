@@ -22,7 +22,7 @@ export function Favorites({isAdmin}) {
                 <section>
                     {favorites &&
                     favorites.map(product => ( 
-                    <div onClick={() => navigate(`/details/${product.id}`)}>
+                    <div key={product.id} onClick={() => navigate(`/details/${product.id}`)}>
                         <img className="food" src={product.image} alt="" />
 
                         <aside>

@@ -11,10 +11,9 @@ import { HiArrowUpTray } from 'react-icons/hi2';
 
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
 
 import { useNavigate, useParams } from 'react-router-dom';
-
-
 
 export function Edit({isAdmin}) {
     const { updateMeal, useMeal } = useAuth()
@@ -38,8 +37,11 @@ export function Edit({isAdmin}) {
     useEffect(() => {
          async function fetchDetails(id) {
             const meal = await useMeal({id})
-            setMeals(meal.data)
-            setTags(meal.data.tags)
+            // console.log(meal, meal.data.hasOwnProperty('error'), "false>>>",!meal.data.hasOwnProperty('error'))
+            if(meal && !meal.data.hasOwnProperty('error')) {
+                setMeals(meal.data)
+                setTags(meal.data.tags)
+            }
         }
         fetchDetails(params.id)
     }, [])
@@ -79,7 +81,17 @@ export function Edit({isAdmin}) {
         navigate(-1)
     }
 
-    if(isAdmin) {
+    async function handleDeleteMeal() {
+        let confirmed = confirm("Você realmente quer deletar esse prato?")
+        
+        if(confirmed) {
+            await api.delete(`/meals/${params.id}`)
+            alert("Prato deletado!")
+            navigate('/')
+        }
+    }
+
+    if(isAdmin && meals != "") {
         return (
             <Container>
                 <Header isAdmin />
@@ -179,7 +191,7 @@ export function Edit({isAdmin}) {
                         </label>
 
                         <section>
-                            <Button className="handleEdit" type="button" text="Excluir prato"/>
+                            <Button className="handleEdit" type="button" text="Excluir prato"onClick={handleDeleteMeal}/>
                             <Button className="handleEdit" type="button" text="Salvar alterações" onClick={handleUpdateMeal}/>
                         </section>
                     </form>

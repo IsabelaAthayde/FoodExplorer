@@ -3,7 +3,21 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: inherit;
     height: 100vh;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: ${({theme}) => theme.COLORS.DARK_700};
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: ${({theme}) => theme.COLORS.DARK_1000};
+        }
+        
 
     main {
         width: 100%;

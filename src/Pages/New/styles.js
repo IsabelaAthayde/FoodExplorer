@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: inherit;
     height: inherit;
-    overflow-y: scroll;
+    overflow-y: auto;
+
 
     main {
         width: 100%;
@@ -12,7 +13,7 @@ export const Container = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        margin-bottom: 10rem;
         
         > form {           
             width: 80%;
@@ -193,11 +194,12 @@ export const Container = styled.div`
                         }
 
                         &::-webkit-scrollbar-track {
-                            background-color: ${({theme}) => theme.COLORS.DARK_900};
+                            background-color: transparent;
                         }
 
                         &::-webkit-scrollbar-thumb {
-                            background-color: ${({theme}) => theme.COLORS.LIGHT_500};
+                            background-color: ${({theme}) => theme.COLORS.LIGHT_700};
+                            border-radius: 5px;
                         }
                     }
                 }

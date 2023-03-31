@@ -12,6 +12,7 @@ export const Container = styled.div`
     padding-bottom: 10rem;
 
     overflow-x: hidden;
+    overflow-y: auto;
 
     > section#slogan {
         min-height: 14.9rem;

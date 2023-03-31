@@ -102,6 +102,7 @@ export const Container = styled.div`
         > section#payment {
             > h2 {
                 text-align: center;
+                font-size: 2.5rem;
             }
 
             > div#pay-container {

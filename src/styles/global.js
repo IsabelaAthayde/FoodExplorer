@@ -22,6 +22,18 @@ export default createGlobalStyle`
         overflow-x: hidden;
 
         -webkit-font-smoothing: antialiased;
+
+        &::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: ${({theme}) => theme.COLORS.DARK_700};
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: ${({theme}) => theme.COLORS.DARK_1000};
+        }
         
     }
 

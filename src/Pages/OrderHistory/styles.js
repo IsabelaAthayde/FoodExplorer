@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100vw;
+    width: inherit;
     height: inherit;
     min-height: 100%;
     position: relative;
@@ -20,16 +20,27 @@ export const Container = styled.div`
             align-items: center;
             height: auto;
             
-            
-            > button#back  {
-                width: fit-content;
-                height: fit-content;
-                margin: 3rem 5rem 0;
-                align-self: flex-start;
-                font-size: 2rem;
-                background-color: transparent;
-                border: none;
+            > section#buttons {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 3rem 8rem 0;
+
+                button#back{
+                    width: fit-content;
+                    height: fit-content;
+                    align-self: flex-start;
+                    font-size: 2rem;
+                    background-color: transparent;
+                    border: none;
+                }
+    
+                button#type {
+                    width: 16rem;
+                }
             }
+
             h1 {
                 width: 90%;
             margin: 0 auto;
@@ -60,42 +71,50 @@ export const Container = styled.div`
                 align-items: center;
                 gap: .8rem;
                 width: fit-content;
+                padding-left: 2.4rem;
+
             }
-            
-            div.item {
-                width: 100%;
-                min-width: 280px;
-                min-height: 114px;
-                height: fit-content;
+            .code {
+                text-align: start;
+                padding-left: 2.4rem;
+            }
+            > div.table {
 
-                margin: 0 auto;
-                padding: 2rem;
-
-                display: grid;
-                gap: 1rem;
-                justify-items: center;
-                align-content: space-between;
-
-                border: 2px solid ${({theme}) => theme.COLORS.DARK_1000};
-                border-radius: 10px;
-                
-                @media (max-width: 417px) {
-                    padding: 2rem 1rem;
-                    overflow: auto;
-                }
-
-                section.header {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 3rem;
+                div.item {
+                    width: 100%;
+                    min-width: 280px;
+                    min-height: 114px;
+                    height: fit-content;
+    
+                    margin: 0 auto;
+                    padding: 2rem;
+    
+                    display: grid;
+                    gap: 1rem;
+                    justify-items: center;
+                    align-content: space-between;
+    
+                    border: 2px solid ${({theme}) => theme.COLORS.DARK_1000};
+                    border-radius: 10px;
+                    
                     @media (max-width: 417px) {
-                        justify-content: flex-start;
+                        padding: 2rem 1rem;
+                        overflow: auto;
                     }
-                }
-
-                p.description {
-                    word-break:break-all;
+    
+                    section.header {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 3rem;
+                        @media (max-width: 417px) {
+                            justify-content: flex-start;
+                        }
+                    }
+    
+                    p.description {
+                        word-break:break-all;
+                    }
                 }
             }
 
@@ -138,12 +157,12 @@ export const Container = styled.div`
                     color: ${({theme}) => theme.COLORS.LIGHT_400};
                     }
                     
-                td{
+                td {
                     background-color: var(--thead-bg);
                     height: 6.4rem;
 
-                    text-align: start;
-                    padding-left: 2.4rem;
+                    text-align: center;
+
 
                     border-bottom: 2px solid #192227;
                     border-right: 2px solid #192227;
