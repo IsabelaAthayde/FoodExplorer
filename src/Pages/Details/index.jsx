@@ -70,7 +70,10 @@ export function Details({isAdmin}) {
 
                         <section>
                             {isAdmin ? (
-                                <div style={{display: "none"}}></div>
+                                <Button 
+                                type="button"
+                                text="Editar prato"
+                                />
                             ) : (
                                 <div className="quantity">
                                     <a onClick={(e) => {
