@@ -15,7 +15,7 @@ export function OrderHistory({isAdmin}) {
     const [ width, setWidth ] = useState(undefined);
     const [ cobsAll, setCobsAll ] = useState([]);
     const [ cobsLess, setCobsLess ] = useState([]);
-    const [ typeShowCob, setTypeShowCob ] = useState('less');
+    const [ typeShowCob, setTypeShowCob ] = useState('all');
 
     const navigate = useNavigate();
 
