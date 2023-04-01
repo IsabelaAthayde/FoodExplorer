@@ -70,10 +70,7 @@ export function Details({isAdmin}) {
 
                         <section>
                             {isAdmin ? (
-                                <Button 
-                                type="button"
-                                text="Editar prato"
-                                />
+                                <div style={{display: "none"}}></div>
                             ) : (
                                 <div className="quantity">
                                     <a onClick={(e) => {
@@ -97,7 +94,7 @@ export function Details({isAdmin}) {
 
                             {isAdmin ? 
                             (
-                                <Button text="Editar prato" onClick={() => navigate(`/edit/${meals.id}`)}/>
+                                <Button type="button" text="Editar prato" onClick={() => navigate(`/edit/${meals.id}`)}/>
                             ) : (
                                 <Button onClick={addProductsToCart} text={`Pedir - R$ ${meals.price}`} icon={<img src={Receipt}/>}  />
                             )}
