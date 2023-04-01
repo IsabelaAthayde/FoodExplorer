@@ -30,7 +30,7 @@ export const Container = styled.div`
         gap: 1.6rem;
 
         padding: 2.4rem 0;
-        margin: 1.6rem auto 3rem;
+        margin: 1.6rem auto 14rem;
         border-radius: 8px;
 
         button#back {
