@@ -19,9 +19,9 @@ como uma foto, nome, preço e etc; Além de poder excluir e mais.
 - `Javascript`
 
 ### 📁 Acesso ao projeto
-https://best-foodexplorer.netlify.app/
+Você pode acessar os arquivos do projeto clicando [aqui](https://github.com/gui-lirasilva/Edige-POO/tree/master/src).
 
 #### Layout in Figma made by Daniel Duarte/Productor Designer - Rocketseat
-Você pode acessar os arquivos do projeto clicando [aqui](https://github.com/gui-lirasilva/Edige-POO/tree/master/src).
+
 
 <img src='https://img.shields.io/badge/last%20updated-março-brightgreen'></img>
