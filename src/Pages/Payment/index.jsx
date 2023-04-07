@@ -62,7 +62,7 @@ export function Payment({isAdmin}) {
 
             let newCob = response.data[1]
             
-            setCobData([...cobData, newCob])
+            setCobData((prev) => [...prev, newCob])
             localStorage.setItem('@foodexplorer:cobs', JSON.stringify(cobData))
         }
     } 
