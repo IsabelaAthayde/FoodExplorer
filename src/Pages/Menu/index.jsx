@@ -66,7 +66,7 @@ export function Menu({isAdmin}) {
                 {search &&
                     meals.map(meal => (
                         <div className="order" key={`div-${meal.id}`} >
-                            <img  key={`img-${meal.id}`} className="food" src={`${api.defaults.baseURL}/files/${meal.image}`} alt="imagem da comida" />
+                            <img  loading="lazy" key={`img-${meal.id}`} className="food" src={`${api.defaults.baseURL}/files/${meal.image}`} alt="imagem da comida" />
 
                             <aside key={`as-${meal.id}`}>
                                 <h3 key={`h3-${meal.id}`}>{meal.title} <Icon className="favIcon" 

@@ -46,7 +46,7 @@ export function Header({ isAdmin, getSearch, ...rest }) {
         <Container ref={header} isAdmin={isAdmin} {...rest}>
 
             <button id="menu" onClick={() => navigate("/menu")}>
-                <img src={Menu} alt="" />
+                <img loading="lazy" src={Menu} alt="botão do menu" />
             </button>
 
             <Logo isAdmin={isAdmin} onClick={() => navigate("/")}/>
@@ -59,7 +59,7 @@ export function Header({ isAdmin, getSearch, ...rest }) {
             />
 
             <button id="receipt" onClick={(e) => toggleFavOrPayButton(e)}>
-                <img src={Receipt} alt="" />
+                <img loading="lazy" src={Receipt} alt="botão de pedidos" />
                 <div id="order">{ordersQuantity}</div>
 
                 <nav

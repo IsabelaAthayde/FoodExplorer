@@ -126,7 +126,7 @@ export function CardsSlider({isAdmin, data, category}) {
                         }}
                         />
                         
-                        <img className='food' src={`${api.defaults.baseURL}/files/${food.image}`} alt={food.name}/>
+                        <img className='food' loading="lazy" src={`${api.defaults.baseURL}/files/${food.image}`} alt={food.name}/>
 
                         <span className='dish'>{food.title} <MdKeyboardArrowRight/> </span>
                         <p className='ingredients'>{food.description}</p>

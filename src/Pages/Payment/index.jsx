@@ -85,7 +85,7 @@ return (
                     {productsCart &&
                         productsCart.map((product) => (
                             <div className="order" key={`div-${product.id}`}>
-                                <img  key={`img-${product.id}`} className="food" src={product.image} alt="imagem da comida" />
+                                <img  loading="lazy" key={`img-${product.id}`} className="food" src={product.image} alt="imagem da comida" />
 
                                 <aside key={`as-${product.id}`}>
                                     <h3 key={`h3-${product.id}`}>{product.qtd} X {product.title} </h3>
@@ -135,7 +135,7 @@ return (
                         { pixOption === true ? (
                             total == 0 ?  <h2>Carrinho Vazio</h2> : 
                             (<div id="pix-container">
-                                <img src={qrcode} alt="qr code"/>
+                                <img loading="lazy" src={qrcode} alt="qr code"/>
                                 <a onClick={() => {navigator.clipboard.writeText(copyText)}}>Copiar código</a>
                             </div>)
                         ) : 
