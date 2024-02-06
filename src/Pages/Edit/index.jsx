@@ -158,7 +158,11 @@ export function Edit({isAdmin}) {
                             }
                             
                             <TagItem 
+<<<<<<< HEAD
                             $isnew 
+=======
+                            isNew 
+>>>>>>> 3ae49310352cf5a19d9e7f16387b28f6368563cd
                             placeholder="Adicionar"
                             value={newTag}
                             onChange={e => setNewTag(e.target.value)}

@@ -11,8 +11,13 @@ export const Container = styled.div`
 
     padding: 0.6rem 1rem;
 
+<<<<<<< HEAD
     background-color: ${({theme, $isnew }) => $isnew ? "transparent" : theme.COLORS.LIGHT_600};
     border: ${({theme, $isnew }) => $isnew ? `2px ${theme.COLORS.LIGHT_600} dashed ` : "none" };
+=======
+    background-color: ${({theme, isNew }) => isNew ? "transparent" : theme.COLORS.LIGHT_600};
+    border: ${({theme, isNew }) => isNew ? `2px ${theme.COLORS.LIGHT_600} dashed ` : "none" };
+>>>>>>> 3ae49310352cf5a19d9e7f16387b28f6368563cd
     border-radius: 10px;
     outline: none;
 
@@ -38,7 +43,11 @@ export const Container = styled.div`
         height: 22px;
         svg {
             height: 20px;
+<<<<<<< HEAD
             color: ${({theme, $isnew}) => $isnew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100}
+=======
+            color: ${({theme, isNew}) => isNew ? theme.COLORS.LIGHT_500 : theme.COLORS.LIGHT_100}
+>>>>>>> 3ae49310352cf5a19d9e7f16387b28f6368563cd
 
         }
     }

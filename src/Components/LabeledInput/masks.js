@@ -47,6 +47,10 @@ export function getCardBrand(e) {
 export function expiry(e) {
     e.currentTarget.maxLength = 5;
     let value = e.currentTarget.value;
+<<<<<<< HEAD
+=======
+    console.log(value, value.match(/^(\d{2})(\d{2})/g)) 
+>>>>>>> 3ae49310352cf5a19d9e7f16387b28f6368563cd
 
     if(value.match(/^(\d{2})(\d{2})/g)) {
         value.replace(/\D(?!\/)/g, "")
@@ -57,6 +61,10 @@ export function expiry(e) {
     value = value.replace(/^(\d{2})(\d{2})/g,'$1/$2')
     
     e.currentTarget.value = value;
+<<<<<<< HEAD
+=======
+    console.log(value.length, value.indexOf('/'), value, value.match(/^(\d{2})(\d{2})/g)) 
+>>>>>>> 3ae49310352cf5a19d9e7f16387b28f6368563cd
 
     return e;
 }
