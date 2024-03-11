@@ -40,7 +40,7 @@ export const Container = styled.div`
                     font-weight: 400;
                     font-size: 3.2rem;
                 }
-    
+
                 > div {
                     display: flex;
                     gap: 0.4rem 1.5rem;
@@ -57,6 +57,8 @@ export const Container = styled.div`
                     > .streetNumber,.state {
                         flex: 0 0 20%;
                     }
+
+                    
                       
                 }
             }

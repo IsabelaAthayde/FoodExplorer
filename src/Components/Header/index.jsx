@@ -69,9 +69,9 @@ export function Header({ isAdmin, getSearch, ...rest }) {
                     <li><a onClick={()=> navigate("/")}>Home</a></li>
                     <li><a onClick={()=> navigate("/favorites")}>Favoritos</a></li>
                     <li><a onClick={()=> navigate("/order-history")}>Histórico de Pedidos</a></li>
+                    <li><a onClick={()=> navigate("/config")}>Configurações</a></li>
                 </nav>
             </button>
-
                           
             <Button 
             id="order-lg-screen" 

@@ -217,9 +217,12 @@ export function CreditCardForm({isAdmin, productsCart}) {
             mask="cardNumber"
             placeholder="0000 0000 0000 0000"
             value={cardNumber}
+            icon={icon}
             onChange={(e) => { 
                 setCardNumber(e.target.value) 
-                setBrand(e.target.attributes.cardtype.value)}}
+                setBrand((e.target.attributes.cardtype.value))
+                console.log(e.target.attributes.cardtype.value)
+            }}
             />
             <div className="flex-container">
                 <LabeledInput 

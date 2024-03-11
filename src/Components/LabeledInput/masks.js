@@ -41,25 +41,39 @@ export function getCardBrand(e) {
     if(!cardType) {
         cardType = 'default';
     }
-
+    console.log(cardType)
     return cardType;
 }
 export function expiry(e) {
     e.currentTarget.maxLength = 5;
     let value = e.currentTarget.value;
 
-    if(value.match(/^(\d{2})(\d{2})/g)) {
-        value.replace(/\D(?!\/)/g, "")
+    if (value.match(/^(\d{2})(\d{2})$/)) {
+        value = value.replace(/\D(?!\/)/g, ""); // Correção aqui
+        let month = value.slice(0, 2);
+        let year = value.slice(2, 4);
+
+        // Verificar se o mês e o ano são válidos
+        let currentYear = new Date().getFullYear() % 100; // Pegar os dois últimos dígitos do ano atual
+        let currentMonth = new Date().getMonth() + 1; // getMonth() retorna o mês baseado em zero (0 a 11)
+
+        if (parseInt(month) > 12 || parseInt(month) < 1 || parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+            alert("Data de expiração inválida");
+            e.currentTarget.value = ""; // Limpar o valor do campo de entrada
+            return;
+        }
+
         return;
     }
-    value = value.replace(/\D/g, "")
-    value = value.replace(/^(1[0-2]|0[0-9])(\d)/g,'$1/$2')
-    value = value.replace(/^(\d{2})(\d{2})/g,'$1/$2')
-    
+    value = value.replace(/\D/g, "");
+    value = value.replace(/^(1[0-2]|0[0-9])(\d)/g, '$1/$2');
+    value = value.replace(/^(\d{2})(\d{2})/g, '$1/$2');
+
     e.currentTarget.value = value;
 
     return e;
 }
+
 
 export function cvc(e) {
     e.currentTarget.maxLength = 4;

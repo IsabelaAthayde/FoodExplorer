@@ -17,6 +17,8 @@ import { api } from '../../services/api.js';
 import { BsSearch } from "react-icons/bs";
 import { FaArrowLeft } from "react-icons/fa";
 
+import creditCard from "../../assets/icons/CreditCard.svg"
+
 export function Config({isAdmin, productsCart}) {
     const [addCard, setAddCard] = useState(false);
 
@@ -83,24 +85,17 @@ export function Config({isAdmin, productsCart}) {
             cvc
         }
 
-        // let items = productsCart?.map((product) => (
-        //     {
-        //         name: product.title,
-        //         value: Number(String(product.price).split('.').join("")),
-        //         amount: product.qtd,
-        //     }
-        // ))
-
         if(!data /*&& !items*/) {
            alert("Dados em falta, verifique os dados a serem enviados")
            return
         }
 
-        for(const info in data) {
+        for(const info in data) {  
             if(data[info] == 'default') {
                 alert(`Não foi possível identificar a bandeira do cartão, por favor reescreva o número do cartão`)
                 return
             }
+
             if(!data[info]) {
                 alert(`${info} não preenchido, verifique os dados a serem enviados`)
                 return
@@ -251,7 +246,7 @@ export function Config({isAdmin, productsCart}) {
                         value={cardName}
                         onChange={(e) => setCardName(e.target.value)}
                         />
-                        <LabeledInput 
+                        <LabeledInput
                         label="Número do Cartão" 
                         type="text"
                         name='number'
@@ -260,7 +255,8 @@ export function Config({isAdmin, productsCart}) {
                         value={cardNumber}
                         onChange={(e) => { 
                             setCardNumber(e.target.value) 
-                            setBrand(e.target.attributes.cardtype.value)}}
+                            setBrand(e.target.attributes.cardtype.value)
+                        }}
                         />
                         <div className="flex-container">
                             <LabeledInput 
